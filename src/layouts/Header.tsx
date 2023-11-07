@@ -4,7 +4,7 @@ import { PAGES_PATHS } from '../constants'
 
 const Navbar: React.FC = () => {
 	return (
-		<ul>
+		<ul className="Navbar">
 			<li>
 				<Link to={PAGES_PATHS['home']}>Accueil</Link>
 			</li>
@@ -23,8 +23,10 @@ const Navbar: React.FC = () => {
 
 export const Header: React.FC = () => {
 	return (
-		<div>
-			<img src={sportSeeLogo} alt="SportSee logo" />
+		<div className="Header">
+			<Link to={PAGES_PATHS['home']}>
+				<img src={sportSeeLogo} alt="SportSee logo" />
+			</Link>
 			<Navbar />
 		</div>
 	)
