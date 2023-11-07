@@ -1,0 +1,45 @@
+.Sidebar {
+	padding-top: 91px;
+
+	&__Navbar {
+		position: fixed;
+		width: 117px;
+		color: #fff;
+		background-color: #020203;
+		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+		height: 100%;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		&::after {
+			content: attr(data-copyright);
+			position: absolute;
+			bottom: 192px;
+			right: -8px;
+			transform: rotate(-90deg);
+			font-size: 12px;
+			font-weight: 500;
+			line-height: 24px;
+			width: 144px;
+		}
+
+		ul {
+			margin-bottom: calc(91px * 2);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 20px;
+
+			svg {
+				cursor: pointer;
+			}
+		}
+	}
+
+	.Sidebar__main {
+		margin-left: 117px;
+		display: flex;
+	}
+}

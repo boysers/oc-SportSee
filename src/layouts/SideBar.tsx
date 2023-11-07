@@ -1,27 +1,31 @@
+import { AltersIcon, BikeIcon, SwimmingIcon, YogaIcon } from '@/components/Icon'
 import { PropsWithChildren } from 'react'
 
 type SidebarProps = PropsWithChildren
 
 const Navbar: React.FC = () => {
 	return (
-		<div>
+		<aside
+			className="Sidebar__Navbar"
+			data-copyright={`Copiryght, SportSee ${new Date().getFullYear()}`}
+		>
 			<ul>
-				<li>Icon 1</li>
-				<li>Icon 2</li>
-				<li>Icon 3</li>
-				<li>Icon 4</li>
+				<YogaIcon />
+				<SwimmingIcon />
+				<BikeIcon />
+				<AltersIcon />
 			</ul>
-
-			<footer>Copiryght, SportSee {new Date().getFullYear()}</footer>
-		</div>
+		</aside>
 	)
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
 	return (
-		<div>
+		<div className="Sidebar">
 			<Navbar />
-			{children}
+			<main className="Sidebar__main">
+				<div>{children}</div>
+			</main>
 		</div>
 	)
 }

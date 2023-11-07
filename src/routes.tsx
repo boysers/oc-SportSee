@@ -9,7 +9,7 @@ export const routes: Array<RouteObject> = [
 		children: [
 			{
 				index: true,
-				element: <h1>home page</h1>,
+				element: <h1>Home page</h1>,
 			},
 			{
 				path: PAGES_PATHS['profile'],
