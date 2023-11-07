@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import sportSeeLogo from '../assets/sportsee_logo.svg'
+import sportSeeLogo from '@/assets/sportsee_logo.svg'
 import { PAGES_PATHS } from '../constants'
 
 const Navbar: React.FC = () => {
