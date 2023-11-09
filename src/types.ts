@@ -8,7 +8,7 @@ export type TUser = {
 
 export type TUserActivity = {
 	userId: TUserId
-	session: Array<TActivitySession>
+	sessions: Array<TActivitySession>
 }
 
 export type TUserAverageSession = {
@@ -19,10 +19,10 @@ export type TUserAverageSession = {
 export type TUserPerformance = {
 	userId: number
 	kind: Record<number, string>
-	data: {
+	data: Array<{
 		value: number
 		kind: number
-	}
+	}>
 }
 
 type TUserId = number

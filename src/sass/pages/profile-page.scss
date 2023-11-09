@@ -1,0 +1,16 @@
+.ProfilePage {
+	margin: 64px 88px;
+
+	&__header {
+		margin-bottom: 72px;
+
+		&__title {
+			margin: 0;
+			margin-bottom: 36px;
+
+			span {
+				color: $primary-color;
+			}
+		}
+	}
+}

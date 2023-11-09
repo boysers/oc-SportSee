@@ -1,7 +1,8 @@
 import { RouteObject } from 'react-router-dom'
-import { RootLayout } from './layouts'
+import { ProfileLayout, RootLayout } from './layouts'
 import { PAGES_PATHS } from './constants'
-import { ProfileLayout } from './layouts/ProfileLayout'
+import { ProfilePage } from './pages'
+import { ProfileService } from './services'
 
 export const routes: Array<RouteObject> = [
 	{
@@ -18,7 +19,10 @@ export const routes: Array<RouteObject> = [
 				children: [
 					{
 						index: true,
-						element: <h1>Profil</h1>,
+						element: <ProfilePage />,
+						loader: async () => {
+							return await ProfileService.getUserMainData(12)
+						},
 					},
 				],
 			},
