@@ -11,13 +11,14 @@
 
 	img {
 		height: 100%;
-		margin-right: 88px;
+		margin-right: 64px;
 	}
 
 	ul {
 		list-style: none;
 
-		min-width: 1040px;
+		max-width: 1024px;
+		width: 100%;
 
 		display: flex;
 		justify-content: space-around;

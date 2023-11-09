@@ -1,7 +1,7 @@
 .ProfilePage {
 	margin: 64px auto;
 	padding: 0 88px;
-	min-width: 1126px;
+	min-width: calc(1024px - 117px);
 
 	&__header {
 		margin-bottom: 72px;
