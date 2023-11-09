@@ -11,21 +11,18 @@
 
 	img {
 		height: 100%;
+		margin-right: 88px;
 	}
 
 	ul {
 		list-style: none;
 
-		margin-left: 12px;
+		min-width: 1040px;
 
 		display: flex;
-		justify-content: space-between;
-		flex: 1;
-		gap: 12px;
+		justify-content: space-around;
 
 		li {
-			flex: 1;
-
 			a {
 				text-align: center;
 				height: 100%;
@@ -34,6 +31,7 @@
 				align-items: center;
 				justify-content: center;
 				text-decoration: none;
+				padding: 8px;
 
 				font-size: 24px;
 				color: #fff;

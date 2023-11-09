@@ -1,5 +1,7 @@
 .ProfilePage {
-	margin: 64px 88px;
+	margin: 64px auto;
+	padding: 0 88px;
+	min-width: 1126px;
 
 	&__header {
 		margin-bottom: 72px;
