@@ -1,7 +1,5 @@
-.Sidebar {
-	padding-top: 91px;
-
-	&__Navbar {
+.ProfileLayout {
+	&__Sidebar {
 		position: fixed;
 		width: 117px;
 		color: #fff;
@@ -38,7 +36,7 @@
 		}
 	}
 
-	.Sidebar__main {
+	&__container {
 		margin-left: 117px;
 		display: flex;
 	}

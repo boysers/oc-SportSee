@@ -1,14 +1,14 @@
 import { AltersIcon, BikeIcon, SwimmingIcon, YogaIcon } from '@/components/Icon'
 import { PropsWithChildren } from 'react'
 
+type NavbarProps = { className?: string }
+
 type SidebarProps = PropsWithChildren
 
-const Navbar: React.FC = () => {
+const Navbar: React.FC<NavbarProps> = ({ className = '' }) => {
+	const copyright = `Copyright, SportSee ${new Date().getFullYear()}`
 	return (
-		<aside
-			className="Sidebar__Navbar"
-			data-copyright={`Copiryght, SportSee ${new Date().getFullYear()}`}
-		>
+		<aside className={className} data-copyright={copyright}>
 			<ul>
 				<YogaIcon />
 				<SwimmingIcon />
@@ -21,11 +21,11 @@ const Navbar: React.FC = () => {
 
 export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
 	return (
-		<div className="Sidebar">
-			<Navbar />
-			<main className="Sidebar__main">
+		<div className="ProfileLayout">
+			<Navbar className="ProfileLayout__Sidebar" />
+			<div className="ProfileLayout__container">
 				<div>{children}</div>
-			</main>
+			</div>
 		</div>
 	)
 }
