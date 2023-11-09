@@ -35,7 +35,7 @@ type TUserInfos = {
 
 type TKeyData = {
 	calorieCount: number
-	proteinCOunt: number
+	proteinCount: number
 	carbohydrateCount: number
 	lipidCount: number
 }
