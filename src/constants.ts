@@ -4,3 +4,5 @@ export const PAGES_PATHS = {
 	settings: 'settings',
 	community: 'community',
 }
+
+export const USER_ID_DEFAULT = 12

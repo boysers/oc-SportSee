@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router-dom'
 import { ProfileLayout, RootLayout } from './layouts'
-import { PAGES_PATHS } from './constants'
+import { PAGES_PATHS, USER_ID_DEFAULT } from './constants'
 import { ProfilePage } from './pages'
 import { ProfileService } from './services'
 
@@ -21,7 +21,9 @@ export const routes: Array<RouteObject> = [
 						index: true,
 						element: <ProfilePage />,
 						loader: async () => {
-							return await ProfileService.getUserMainData(12)
+							return await ProfileService.getUserMainData(
+								USER_ID_DEFAULT
+							)
 						},
 					},
 				],
