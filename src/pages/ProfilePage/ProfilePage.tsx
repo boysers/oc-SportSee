@@ -1,9 +1,10 @@
 import {
 	UserActivityBarChart,
 	UserAvgSessionsLineChart,
+	UserPerformanceRadarChart,
 } from '@/components/Chart'
 import { useRouteLoaderData } from 'react-router-dom'
-import { ProfilePageLoader } from './loader'
+import { TProfilePageLoader } from './loader'
 
 type HeaderProps = { firstName: string }
 
@@ -21,18 +22,19 @@ const Header: React.FC<HeaderProps> = ({ firstName }) => {
 export const ProfilePage: React.FC = () => {
 	const { userMainData, userActivity, userPerformance } = useRouteLoaderData(
 		'user-profile'
-	) as ProfilePageLoader
-
+	) as TProfilePageLoader
 	const { userInfos } = userMainData
-
-	console.log(userPerformance.data)
-
 	return (
 		<div className="ProfilePage">
 			<Header firstName={userInfos.firstName} />
 			<div className="ProfilePage__container">
 				<UserActivityBarChart userActivity={userActivity} />
-				<UserAvgSessionsLineChart userActivity={userActivity} />
+				<div className="ProfilePage__container__chartStats">
+					<UserAvgSessionsLineChart userActivity={userActivity} />
+					<UserPerformanceRadarChart
+						userPerformance={userPerformance}
+					/>
+				</div>
 			</div>
 		</div>
 	)

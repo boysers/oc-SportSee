@@ -3,14 +3,14 @@ import { UserActivityModel, UserModel, UserPerformanceModel } from '@/models'
 import { ProfileService } from '@/services'
 import { LoaderFunction } from 'react-router-dom'
 
-export type ProfilePageLoader = {
+export type TProfilePageLoader = {
 	userMainData: UserModel
 	userActivity: UserActivityModel
 	userPerformance: UserPerformanceModel
 }
 
 export const profilePageLoader: LoaderFunction<
-	ProfilePageLoader
+	TProfilePageLoader
 > = async () => {
 	const {
 		getUserMainData,

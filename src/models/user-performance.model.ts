@@ -1,4 +1,5 @@
 import { TUserPerformance } from '@/types'
+import { translateKind } from '@/utils'
 
 type TPerformanceItem = {
 	name: string
@@ -19,8 +20,9 @@ export class UserPerformance {
 	private calculatePerformanceData() {
 		if (!this.cachedPerformanceData) {
 			const { data, kind: kindList } = this.userPerformanceData
+			data.reverse()
 			this.cachedPerformanceData = data.map(({ kind, value }) => ({
-				name: kindList[kind],
+				name: translateKind(kindList[kind]),
 				value,
 			}))
 		}

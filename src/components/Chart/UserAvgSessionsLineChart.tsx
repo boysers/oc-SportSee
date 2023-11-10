@@ -1,4 +1,4 @@
-import { UserActivity } from '@/models/user-activity.model'
+import { UserActivityModel } from '@/models'
 import {
 	Legend,
 	Line,
@@ -17,7 +17,7 @@ type CustomTooltipProps = {
 }
 
 type UserAvgSessionsLineChartProps = {
-	userActivity: UserActivity
+	userActivity: UserActivityModel
 }
 
 const CustomLegend: React.FC = () => {
