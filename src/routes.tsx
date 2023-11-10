@@ -3,6 +3,8 @@ import { ProfileLayout, RootLayout } from './layouts'
 import { PAGES_PATHS, USER_ID_DEFAULT } from './constants'
 import { ProfilePage } from './pages'
 import { ProfileService } from './services'
+import { UserActivity } from './models/user-activity.model'
+import { UserModel } from './models'
 
 export const routes: Array<RouteObject> = [
 	{
@@ -21,15 +23,26 @@ export const routes: Array<RouteObject> = [
 						index: true,
 						element: <ProfilePage />,
 						loader: async () => {
-							const { getUserMainData, getUserActivity } =
-								ProfileService
+							const {
+								getUserMainData,
+								getUserActivity,
+								getUserAverageSessions,
+							} = ProfileService
 
-							const userMainData =
-								await getUserMainData(USER_ID_DEFAULT)
+							const user = await getUserMainData(USER_ID_DEFAULT)
+							const userMainData = UserModel.createUser(user)
+							const userId = userMainData.id
 
-							const [userActivity] = await Promise.all([
-								getUserActivity(userMainData.id),
+							const [activity, sessionsAvg] = await Promise.all([
+								getUserActivity(userId),
+								getUserAverageSessions(userId),
 							])
+
+							const userActivity =
+								UserActivity.createUserActivity(
+									activity,
+									sessionsAvg
+								)
 
 							return { userMainData, userActivity }
 						},

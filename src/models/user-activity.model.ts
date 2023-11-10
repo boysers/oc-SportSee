@@ -1,34 +1,48 @@
-import { TUserActivity } from '@/types'
+import { DAY_LETTERS } from '@/constants'
+import {
+	TUserActivity,
+	TUserActivitySessionItem,
+	TUserAverageSession as TUserAvgSessions,
+	TUserMergedActivity,
+} from '@/types'
 
 type MinMaxTuple = [number, number]
 type DomainValues = [number, number]
 
-type TUserActivitySession = {
-	day: string
-	kilogram: number
-	calories: number
-}
+type Session = TUserActivitySessionItem & { dayOfWeekLetter: string }
 
 export class UserActivity {
-	static createUserActivity(userActivityData: TUserActivity): UserActivity {
-		return new UserActivity(userActivityData)
+	static createUserActivity(
+		activity: TUserActivity,
+		userSessionsAvg: TUserAvgSessions
+	): UserActivity {
+		const { userId, sessions } = activity
+		const avgSessions = userSessionsAvg.sessions
+		const mergedSessions = sessions.map(({ day, ...session }, index) => ({
+			date: day,
+			...session,
+			...avgSessions[index],
+		}))
+		return new UserActivity({ userId, sessions: mergedSessions })
 	}
 
-	private cachedSessions: Array<TUserActivitySession> | undefined
+	private cachedSessions: Array<Session> | undefined
 	private cachedKiloMinMax: MinMaxTuple | undefined
 	private cachedKiloDomain: DomainValues | undefined
 	private cachedCaloMinMax: MinMaxTuple | undefined
 	private cachedCaloDomain: DomainValues | undefined
 
-	private constructor(private readonly userActivityData: TUserActivity) {}
+	private constructor(
+		private readonly userActivityData: TUserMergedActivity
+	) {}
 
-	private calculateSessions(): Array<TUserActivitySession> {
+	private calculateSessions(): Array<Session> {
 		if (!this.cachedSessions) {
 			this.cachedSessions = this.userActivityData.sessions.map(
-				({ day, calories, kilogram }) => ({
-					day: this.getDay(day).toString(),
-					calories,
-					kilogram,
+				({ date, ...session }) => ({
+					...session,
+					dayOfWeekLetter: this.getDayOfWeekLetter(date),
+					date,
 				})
 			)
 		}
@@ -91,11 +105,16 @@ export class UserActivity {
 		return this.cachedCaloDomain
 	}
 
-	private getDay(dateStr: string): number {
-		return new Date(dateStr).getDate()
+	private getDayOfWeekLetter(dateStr: string): string {
+		const dayOfWeek = new Date(dateStr).getDay()
+		return DAY_LETTERS[dayOfWeek]
 	}
 
-	get sessions(): Array<TUserActivitySession> {
+	get userId(): number {
+		return this.userActivityData.userId
+	}
+
+	get sessions(): Array<Session> {
 		return this.calculateSessions()
 	}
 

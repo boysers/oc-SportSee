@@ -1,4 +1,7 @@
-import { UserActivityBarChart } from '@/components/Chart'
+import {
+	UserActivityBarChart,
+	UserAvgSessionsLineChart,
+} from '@/components/Chart'
 import { ProfilePageLoader } from '@/types'
 import { useLoaderData } from 'react-router-dom'
 
@@ -23,6 +26,7 @@ export const ProfilePage: React.FC = () => {
 			<Header firstName={userInfos.firstName} />
 			<div className="ProfilePage__container">
 				<UserActivityBarChart userActivity={userActivity} />
+				<UserAvgSessionsLineChart userActivity={userActivity} />
 			</div>
 		</div>
 	)

@@ -39,5 +39,9 @@
 	&__container {
 		padding-left: 117px;
 		display: flex;
+
+		& > div {
+			margin: auto;
+		}
 	}
 }

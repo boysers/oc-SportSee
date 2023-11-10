@@ -5,6 +5,16 @@ export type ProfilePageLoader = {
 	userActivity: UserActivityModel
 }
 
+export type TUserMergedActivity = {
+	userId: TUserId
+	sessions: Array<TUserActivitySessionItem>
+}
+
+export type TUserActivitySessionItem = TAverageSession &
+	Omit<TActivitySession, 'day'> & {
+		date: string
+	}
+
 export type TUser = {
 	id: TUserId
 	userInfos: TUserInfos

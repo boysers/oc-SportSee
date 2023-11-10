@@ -89,7 +89,7 @@ export const UserActivityBarChart: React.FC<UserActivityBarChartProps> = ({
 						stroke="#9B9EAC"
 						axisLine={{ stroke: '#c8c8c8' }}
 						tickLine={false}
-						tickMargin={12}
+						tickMargin={10}
 						scale="point"
 						padding={{ left: 16, right: 12 }}
 					/>

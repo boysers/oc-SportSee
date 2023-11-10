@@ -1,7 +1,7 @@
 .ProfilePage {
-	margin: 64px auto;
-	padding: 0 88px;
-	min-width: calc(1024px - 117px);
+	margin-top: 64px;
+	margin-bottom: 32px;
+	max-width: 1024px;
 
 	&__header {
 		margin-bottom: 72px;
@@ -14,5 +14,11 @@
 				color: $primary-color;
 			}
 		}
+	}
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
 	}
 }
