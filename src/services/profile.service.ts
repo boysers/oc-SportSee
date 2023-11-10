@@ -4,9 +4,8 @@ import {
 	USER_AVERAGE_SESSIONS,
 	USER_PERFORMANCE,
 } from '@/__mocks__'
-import { UserModel } from '@/models'
+import { UserActivityModel, UserModel } from '@/models'
 import {
-	TUserActivity,
 	TUserAverageSession as TUserAvgSession,
 	TUserPerformance,
 } from '@/types'
@@ -17,21 +16,19 @@ export class ProfileService {
 
 		if (userIndex === -1) throw new Error(`${userId} not found`)
 
-		const user = UserModel.createUser(USER_MAIN_DATA[userIndex])
-
-		return user
+		return UserModel.createUser(USER_MAIN_DATA[userIndex])
 	}
 
-	static async getUserActivity(userId: number): Promise<TUserActivity> {
+	static async getUserActivity(userId: number): Promise<UserActivityModel> {
 		const userActivityIndex = USER_ACTIVITY.findIndex(
 			(data) => data.userId === userId
 		)
 
 		if (userActivityIndex === -1) throw new Error(`${userId} not found`)
 
-		const userActivity = USER_ACTIVITY[userActivityIndex]
-
-		return userActivity
+		return UserActivityModel.createUserActivity(
+			USER_ACTIVITY[userActivityIndex]
+		)
 	}
 
 	static async getUserAverageSessions(

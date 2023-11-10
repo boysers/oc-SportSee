@@ -1,0 +1,1 @@
+export { UserActivityBarChart } from './UserActivityBarChart'

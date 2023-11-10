@@ -21,9 +21,17 @@ export const routes: Array<RouteObject> = [
 						index: true,
 						element: <ProfilePage />,
 						loader: async () => {
-							return await ProfileService.getUserMainData(
-								USER_ID_DEFAULT
-							)
+							const { getUserMainData, getUserActivity } =
+								ProfileService
+
+							const userMainData =
+								await getUserMainData(USER_ID_DEFAULT)
+
+							const [userActivity] = await Promise.all([
+								getUserActivity(userMainData.id),
+							])
+
+							return { userMainData, userActivity }
 						},
 					},
 				],

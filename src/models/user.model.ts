@@ -2,13 +2,12 @@ import { TUser } from '@/types'
 
 export class User {
 	static createUser(userData: TUser) {
-		const user = new User(userData)
-		return user
+		return new User(userData)
 	}
 
-	private constructor(private readonly userData: TUser) {}
-
 	private cachedTodayScore: number | undefined
+
+	private constructor(private readonly userData: TUser) {}
 
 	private todayScoreFactory() {
 		if (!this.cachedTodayScore) {
@@ -21,7 +20,6 @@ export class User {
 
 			this.cachedTodayScore = calculatedScore
 		}
-
 		return this.cachedTodayScore
 	}
 

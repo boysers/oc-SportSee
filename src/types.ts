@@ -1,3 +1,10 @@
+import { UserActivityModel, UserModel } from './models'
+
+export type ProfilePageLoader = {
+	userMainData: UserModel
+	userActivity: UserActivityModel
+}
+
 export type TUser = {
 	id: TUserId
 	userInfos: TUserInfos

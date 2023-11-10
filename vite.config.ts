@@ -9,6 +9,7 @@ const alias = [
 	{ name: '@layouts', path: './src/layouts' },
 	{ name: '@pages', path: './src/pages' },
 	{ name: '@utils', path: './src/utils' },
+	{ name: '@lib', path: './src/lib' },
 ]
 
 // https://vitejs.dev/config/
