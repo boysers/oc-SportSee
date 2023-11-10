@@ -6,8 +6,11 @@ import {
 	TUserMergedActivity,
 } from '@/types'
 
-type MinMaxTuple = [number, number]
-type DomainValues = [number, number]
+type NumberMin = number
+type NumberMax = number
+
+type MinMaxTuple = [NumberMin, NumberMax]
+type DomainTuple = [NumberMin, NumberMax]
 
 type Session = TUserActivitySessionItem & { dayOfWeekLetter: string }
 
@@ -28,9 +31,9 @@ export class UserActivity {
 
 	private cachedSessions: Array<Session> | undefined
 	private cachedKiloMinMax: MinMaxTuple | undefined
-	private cachedKiloDomain: DomainValues | undefined
+	private cachedKiloDomain: DomainTuple | undefined
 	private cachedCaloMinMax: MinMaxTuple | undefined
-	private cachedCaloDomain: DomainValues | undefined
+	private cachedCaloDomain: DomainTuple | undefined
 
 	private constructor(
 		private readonly userActivityData: TUserMergedActivity
@@ -49,7 +52,7 @@ export class UserActivity {
 		return this.cachedSessions
 	}
 
-	private calculateMinMax(data: number[]): [number, number] {
+	private calculateMinMax(data: number[]): [NumberMin, NumberMax] {
 		return [Math.min(...data), Math.max(...data)]
 	}
 
@@ -57,7 +60,7 @@ export class UserActivity {
 		valueMin: number,
 		valueMax: number,
 		step: number
-	): DomainValues {
+	): DomainTuple {
 		const domainMin =
 			valueMin % step === 0
 				? valueMin - step
@@ -110,10 +113,6 @@ export class UserActivity {
 		return DAY_LETTERS[dayOfWeek]
 	}
 
-	get userId(): number {
-		return this.userActivityData.userId
-	}
-
 	get sessions(): Array<Session> {
 		return this.calculateSessions()
 	}
@@ -126,7 +125,7 @@ export class UserActivity {
 		return this.calculateKiloMinMax()[1]
 	}
 
-	get kilogramDomain(): [number, number] {
+	get kilogramDomain(): MinMaxTuple {
 		return this.calculeKiloDomain()
 	}
 
@@ -138,7 +137,7 @@ export class UserActivity {
 		return this.calculateCaloMinMax()[1]
 	}
 
-	get caloriesDomain(): [number, number] {
+	get caloriesDomain(): DomainTuple {
 		return this.calculeCaloDomain()
 	}
 }
