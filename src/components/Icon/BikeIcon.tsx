@@ -1,4 +1,4 @@
-import { IconProps } from './IconProps'
+import { IconProps } from "@/types"
 
 export const BikeIcon: React.FC<IconProps> = ({
 	backgroundColor = 'white',
