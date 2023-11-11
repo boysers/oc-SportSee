@@ -5,6 +5,7 @@ import {
 	TUserAverageSession as TUserAvgSessions,
 	TUserMergedActivity,
 } from '@/types'
+import { getMinMaxValues } from '@/utils'
 
 type NumberMin = number
 type NumberMax = number
@@ -52,10 +53,6 @@ export class UserActivity {
 		return this.cachedSessions
 	}
 
-	private calculateMinMax(data: number[]): [NumberMin, NumberMax] {
-		return [Math.min(...data), Math.max(...data)]
-	}
-
 	private calculateDomain(
 		valueMin: number,
 		valueMax: number,
@@ -77,7 +74,7 @@ export class UserActivity {
 			const kilograms = this.calculateSessions().map(
 				({ kilogram }) => kilogram
 			)
-			this.cachedKiloMinMax = this.calculateMinMax(kilograms)
+			this.cachedKiloMinMax = getMinMaxValues(kilograms)
 		}
 		return this.cachedKiloMinMax
 	}
@@ -87,7 +84,7 @@ export class UserActivity {
 			const calories = this.calculateSessions().map(
 				({ calories }) => calories
 			)
-			this.cachedCaloMinMax = this.calculateMinMax(calories)
+			this.cachedCaloMinMax = getMinMaxValues(calories)
 		}
 		return this.cachedCaloMinMax
 	}
