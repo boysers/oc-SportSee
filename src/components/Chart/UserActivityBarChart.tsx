@@ -12,7 +12,7 @@ import {
 	XAxis,
 	YAxis,
 } from '@/lib/recharts'
-import { UserActivity } from '@/models/user-activity.model'
+import { UserActivityModel } from '@/models'
 
 type PayloadItemType = TooltipPayloadType<ValueType, NameType>
 
@@ -22,7 +22,7 @@ type CustomTooltipProps = {
 
 type CustomLegendProps = LegendProps
 
-type UserActivityBarChartProps = { userActivity: UserActivity }
+type UserActivityBarChartProps = { userActivity: UserActivityModel }
 
 const CustomLegend: React.FC<CustomLegendProps> = ({ payload }) => {
 	return (
@@ -41,7 +41,7 @@ const CustomLegend: React.FC<CustomLegendProps> = ({ payload }) => {
 						>
 							<div className={iconClassName}></div>
 							{isCalories
-								? `Calories brûlées (kcal)`
+								? `Calories brûlées (kCal)`
 								: `Poids (kg)`}
 						</li>
 					)

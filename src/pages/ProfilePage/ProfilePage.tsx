@@ -6,6 +6,8 @@ import {
 } from '@/components/Chart'
 import { useRouteLoaderData } from 'react-router-dom'
 import { TProfilePageLoader } from './loader'
+import { CardInfo } from '@/components/Commun'
+import { AppleIcon, BurgerIcon, FireIcon, MeatIcon } from '@/components/Icon'
 
 type HeaderProps = { firstName: string }
 
@@ -24,20 +26,49 @@ export const ProfilePage: React.FC = () => {
 	const { userMainData, userActivity, userPerformance } = useRouteLoaderData(
 		'user-profile'
 	) as TProfilePageLoader
-	const { userInfos, avgScore, avgScorePercentage } = userMainData
+	const {
+		keyData: { calorieCount, proteinCount, carbohydrateCount, lipidCount },
+		userInfos: { firstName },
+		avgScorePercentage,
+		avgScore,
+	} = userMainData
 	return (
 		<div className="ProfilePage">
-			<Header firstName={userInfos.firstName} />
+			<Header firstName={firstName} />
 			<div className="ProfilePage__container">
-				<UserActivityBarChart userActivity={userActivity} />
-				<div className="ProfilePage__container__chartStats">
-					<UserAvgSessionsLineChart userActivity={userActivity} />
-					<UserPerformanceRadarChart
-						userPerformance={userPerformance}
+				<div className="ProfilePage__container__charts">
+					<UserActivityBarChart userActivity={userActivity} />
+					<div className="ProfilePage__container__charts__stats">
+						<UserAvgSessionsLineChart userActivity={userActivity} />
+						<UserPerformanceRadarChart
+							userPerformance={userPerformance}
+						/>
+						<UserAvgScoreRadialBarChart
+							avgScorePercentage={avgScorePercentage}
+							avgScore={avgScore}
+						/>
+					</div>
+				</div>
+				<div className="ProfilePage__container__cards-infos">
+					<CardInfo
+						name="Calories"
+						value={`${calorieCount}kCal`}
+						Icon={<FireIcon />}
 					/>
-					<UserAvgScoreRadialBarChart
-						avgScorePercentage={avgScorePercentage}
-						avgScore={avgScore}
+					<CardInfo
+						name="Proteines"
+						value={`${proteinCount}kg`}
+						Icon={<MeatIcon />}
+					/>
+					<CardInfo
+						name="Glucides"
+						value={`${carbohydrateCount}kg`}
+						Icon={<AppleIcon />}
+					/>
+					<CardInfo
+						name="Lipides"
+						value={`${lipidCount}kg`}
+						Icon={<BurgerIcon />}
 					/>
 				</div>
 			</div>

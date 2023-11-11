@@ -16,17 +16,28 @@
 		}
 	}
 
-	.UserActivityBarChart {
-		width: 100%;
-	}
-
 	&__container {
 		display: flex;
-		flex-direction: column;
 		gap: 30px;
 
-		&__chartStats {
+		&__charts {
 			display: flex;
+			flex-direction: column;
+			gap: 30px;
+
+			.UserActivityBarChart {
+				width: 100%;
+			}
+
+			&__stats {
+				display: flex;
+				gap: 30px;
+			}
+		}
+
+		&__cards-infos {
+			display: flex;
+			flex-direction: column;
 			gap: 30px;
 		}
 	}
