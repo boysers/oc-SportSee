@@ -22,7 +22,7 @@ export const UserPerformanceRadarChart: React.FC<
 					cx="50%"
 					cy="50%"
 					outerRadius="65%"
-					data={data}
+					data={[...data].reverse()}
 					margin={{
 						top: 0,
 						right: 0,

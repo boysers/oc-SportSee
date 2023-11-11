@@ -1,5 +1,6 @@
 import {
 	UserActivityBarChart,
+	UserAvgScoreRadialBarChart,
 	UserAvgSessionsLineChart,
 	UserPerformanceRadarChart,
 } from '@/components/Chart'
@@ -23,7 +24,7 @@ export const ProfilePage: React.FC = () => {
 	const { userMainData, userActivity, userPerformance } = useRouteLoaderData(
 		'user-profile'
 	) as TProfilePageLoader
-	const { userInfos } = userMainData
+	const { userInfos, avgScore, avgScorePercentage } = userMainData
 	return (
 		<div className="ProfilePage">
 			<Header firstName={userInfos.firstName} />
@@ -33,6 +34,10 @@ export const ProfilePage: React.FC = () => {
 					<UserAvgSessionsLineChart userActivity={userActivity} />
 					<UserPerformanceRadarChart
 						userPerformance={userPerformance}
+					/>
+					<UserAvgScoreRadialBarChart
+						avgScorePercentage={avgScorePercentage}
+						avgScore={avgScore}
 					/>
 				</div>
 			</div>

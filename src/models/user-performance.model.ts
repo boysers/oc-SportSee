@@ -20,7 +20,6 @@ export class UserPerformance {
 	private calculatePerformanceData() {
 		if (!this.cachedPerformanceData) {
 			const { data, kind: kindList } = this.userPerformanceData
-			data.reverse()
 			this.cachedPerformanceData = data.map(({ kind, value }) => ({
 				name: translateKind(kindList[kind]),
 				value,

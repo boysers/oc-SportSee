@@ -5,30 +5,40 @@ export class User {
 		return new User(userData)
 	}
 
-	private cachedTodayScore: number | undefined
+	private cachedAvgScore: number | undefined
+	private cachedAvgScorePercentage: string | undefined
 
 	private constructor(private readonly userData: TUser) {}
 
-	private todayScoreFactory() {
-		if (!this.cachedTodayScore) {
+	private scoreFactory() {
+		if (!this.cachedAvgScore) {
 			const baseScore =
 				('score' in this.userData
 					? this.userData.score
 					: this.userData.todayScore) ?? 0
-
-			const calculatedScore = Math.floor(baseScore * 100)
-
-			this.cachedTodayScore = calculatedScore
+			this.cachedAvgScore = baseScore
 		}
-		return this.cachedTodayScore
+		return this.cachedAvgScore
 	}
 
-	get id() {
+	private calculateAvgScorePercentage() {
+		if (!this.cachedAvgScorePercentage) {
+			const avgScore = this.scoreFactory()
+			this.cachedAvgScorePercentage = `${Math.floor(avgScore * 100)}%`
+		}
+		return this.cachedAvgScorePercentage
+	}
+
+	get userId() {
 		return this.userData.id
 	}
 
-	get todayScore() {
-		return this.todayScoreFactory()
+	get avgScorePercentage() {
+		return this.calculateAvgScorePercentage()
+	}
+
+	get avgScore() {
+		return this.scoreFactory()
 	}
 
 	get userInfos() {

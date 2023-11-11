@@ -21,7 +21,7 @@ export const profilePageLoader: LoaderFunction<
 
 	const user = await getUserMainData(USER_ID_DEFAULT)
 	const userMainData = UserModel.createUser(user)
-	const userId = userMainData.id
+	const userId = userMainData.userId
 
 	const [activity, sessionsAvg, performance] = await Promise.all([
 		getUserActivity(userId),
