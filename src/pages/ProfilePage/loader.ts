@@ -1,6 +1,6 @@
 import { USER_ID_DEFAULT } from '@/constants'
 import { UserActivityModel, UserModel, UserPerformanceModel } from '@/models'
-import { ProfileService } from '@/services'
+import { UserService } from '@/services'
 import { LoaderFunction } from 'react-router-dom'
 
 export type TProfilePageLoader = {
@@ -17,7 +17,7 @@ export const profilePageLoader: LoaderFunction<
 		getUserActivity,
 		getUserAverageSessions,
 		getUserPerformance,
-	} = ProfileService
+	} = UserService
 
 	const user = await getUserMainData(USER_ID_DEFAULT)
 	const userMainData = UserModel.createUser(user)

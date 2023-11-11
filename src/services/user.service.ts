@@ -11,7 +11,7 @@ import {
 	TUserPerformance,
 } from '@/types'
 
-export class ProfileService {
+export class UserService {
 	static async getUserMainData(userId: number): Promise<TUser> {
 		const userIndex = USER_MAIN_DATA.findIndex((data) => data.id === userId)
 		if (userIndex === -1) throw new Error(`${userId} not found`)
