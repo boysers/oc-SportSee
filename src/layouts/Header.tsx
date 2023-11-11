@@ -1,21 +1,21 @@
 import { Link } from 'react-router-dom'
 import sportSeeLogo from '@/assets/sportsee_logo.svg'
-import { PAGES_PATHS } from '../constants'
+import { PAGE_PATH_NAMES } from '../constants'
 
 const Navbar: React.FC = () => {
 	return (
 		<ul className="Navbar">
 			<li>
-				<Link to={PAGES_PATHS['home']}>Accueil</Link>
+				<Link to={PAGE_PATH_NAMES['home']}>Accueil</Link>
 			</li>
 			<li>
-				<Link to={PAGES_PATHS['profile']}>Profil</Link>
+				<Link to={PAGE_PATH_NAMES['profile']}>Profil</Link>
 			</li>
 			<li>
-				<Link to={PAGES_PATHS['settings']}>Réglages</Link>
+				<Link to={PAGE_PATH_NAMES['settings']}>Réglages</Link>
 			</li>
 			<li>
-				<Link to={PAGES_PATHS['community']}>Communauté</Link>
+				<Link to={PAGE_PATH_NAMES['community']}>Communauté</Link>
 			</li>
 		</ul>
 	)
@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
 export const Header: React.FC = () => {
 	return (
 		<div className="Header">
-			<Link to={PAGES_PATHS['home']}>
+			<Link to={PAGE_PATH_NAMES['home']}>
 				<img src={sportSeeLogo} alt="SportSee logo" />
 			</Link>
 			<Navbar />
