@@ -23,9 +23,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
 	return (
 		<div className="ProfileLayout">
 			<Navbar className="ProfileLayout__Sidebar" />
-			<div className="ProfileLayout__container">
-				<div>{children}</div>
-			</div>
+			<div className="ProfileLayout__container">{children}</div>
 		</div>
 	)
 }

@@ -6,7 +6,6 @@ export class User {
 	}
 
 	private cachedAvgScore: number | undefined
-	private cachedAvgScorePercentage: string | undefined
 
 	private constructor(private readonly userData: TUser) {}
 
@@ -21,20 +20,8 @@ export class User {
 		return this.cachedAvgScore
 	}
 
-	private calculateAvgScorePercentage() {
-		if (!this.cachedAvgScorePercentage) {
-			const avgScore = this.scoreFactory()
-			this.cachedAvgScorePercentage = `${Math.floor(avgScore * 100)}%`
-		}
-		return this.cachedAvgScorePercentage
-	}
-
 	get userId() {
 		return this.userData.id
-	}
-
-	get avgScorePercentage() {
-		return this.calculateAvgScorePercentage()
 	}
 
 	get avgScore() {

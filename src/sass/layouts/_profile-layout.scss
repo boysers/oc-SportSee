@@ -10,6 +10,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		z-index: 101;
 
 		&::after {
 			content: attr(data-copyright);
@@ -39,9 +40,6 @@
 	&__container {
 		padding-left: 117px;
 		display: flex;
-
-		& > div {
-			margin: auto;
-		}
+		justify-content: center;
 	}
 }

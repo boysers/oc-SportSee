@@ -11,6 +11,15 @@ import { AppleIcon, BurgerIcon, FireIcon, MeatIcon } from '@/components/Icon'
 
 type HeaderProps = { firstName: string }
 
+type CardInfoListProps = {
+	keyData: {
+		calorieCount: number
+		proteinCount: number
+		carbohydrateCount: number
+		lipidCount: number
+	}
+}
+
 const Header: React.FC<HeaderProps> = ({ firstName }) => {
 	return (
 		<div className="ProfilePage__header">
@@ -22,19 +31,43 @@ const Header: React.FC<HeaderProps> = ({ firstName }) => {
 	)
 }
 
+const CardInfoList: React.FC<CardInfoListProps> = ({ keyData }) => {
+	const { calorieCount, proteinCount, carbohydrateCount, lipidCount } =
+		keyData
+	return (
+		<div className="ProfilePage__container__info-cards">
+			<CardInfo
+				name="Calories"
+				value={`${calorieCount}kCal`}
+				Icon={<FireIcon />}
+			/>
+			<CardInfo
+				name="Proteines"
+				value={`${proteinCount}kg`}
+				Icon={<MeatIcon />}
+			/>
+			<CardInfo
+				name="Glucides"
+				value={`${carbohydrateCount}kg`}
+				Icon={<AppleIcon />}
+			/>
+			<CardInfo
+				name="Lipides"
+				value={`${lipidCount}kg`}
+				Icon={<BurgerIcon />}
+			/>
+		</div>
+	)
+}
+
 export const ProfilePage: React.FC = () => {
 	const { userMainData, userActivity, userPerformance } = useRouteLoaderData(
 		'user-profile'
 	) as TProfilePageLoader
-	const {
-		keyData: { calorieCount, proteinCount, carbohydrateCount, lipidCount },
-		userInfos: { firstName },
-		avgScorePercentage,
-		avgScore,
-	} = userMainData
+	const { keyData, userInfos, avgScore } = userMainData
 	return (
 		<div className="ProfilePage">
-			<Header firstName={firstName} />
+			<Header firstName={userInfos.firstName} />
 			<div className="ProfilePage__container">
 				<div className="ProfilePage__container__charts">
 					<UserActivityBarChart userActivity={userActivity} />
@@ -43,34 +76,10 @@ export const ProfilePage: React.FC = () => {
 						<UserPerformanceRadarChart
 							userPerformance={userPerformance}
 						/>
-						<UserAvgScoreRadialBarChart
-							avgScorePercentage={avgScorePercentage}
-							avgScore={avgScore}
-						/>
+						<UserAvgScoreRadialBarChart avgScore={avgScore} />
 					</div>
 				</div>
-				<div className="ProfilePage__container__cards-infos">
-					<CardInfo
-						name="Calories"
-						value={`${calorieCount}kCal`}
-						Icon={<FireIcon />}
-					/>
-					<CardInfo
-						name="Proteines"
-						value={`${proteinCount}kg`}
-						Icon={<MeatIcon />}
-					/>
-					<CardInfo
-						name="Glucides"
-						value={`${carbohydrateCount}kg`}
-						Icon={<AppleIcon />}
-					/>
-					<CardInfo
-						name="Lipides"
-						value={`${lipidCount}kg`}
-						Icon={<BurgerIcon />}
-					/>
-				</div>
+				<CardInfoList keyData={keyData} />
 			</div>
 		</div>
 	)

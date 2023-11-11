@@ -1,7 +1,9 @@
 .ProfilePage {
 	margin-top: 64px;
 	margin-bottom: 32px;
-	max-width: 1024px;
+	max-width: calc(1126px + 32px);
+	width: 100%;
+	padding: 0 32px;
 
 	&__header {
 		margin-bottom: 72px;
@@ -21,13 +23,11 @@
 		gap: 30px;
 
 		&__charts {
-			display: flex;
-			flex-direction: column;
-			gap: 30px;
+			flex: 1;
 
-			.UserActivityBarChart {
-				width: 100%;
-			}
+			display: flex;
+			gap: 30px;
+			flex-direction: column;
 
 			&__stats {
 				display: flex;
@@ -35,10 +35,10 @@
 			}
 		}
 
-		&__cards-infos {
+		&__info-cards {
 			display: flex;
 			flex-direction: column;
-			gap: 30px;
+			justify-content: space-between;
 		}
 	}
 }
