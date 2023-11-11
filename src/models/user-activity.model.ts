@@ -1,11 +1,10 @@
-import { DAY_LETTERS } from '@/constants'
 import {
 	TUserActivity,
 	TUserActivitySessionItem,
 	TUserAverageSession as TUserAvgSessions,
 	TUserMergedActivity,
 } from '@/types'
-import { getMinMaxValues } from '@/utils'
+import { getDayOfWeekLetter, getMinMaxValues } from '@/utils'
 
 type NumberMin = number
 type NumberMax = number
@@ -45,7 +44,7 @@ export class UserActivity {
 			this.cachedSessions = this.userActivityData.sessions.map(
 				({ date, ...session }) => ({
 					...session,
-					dayOfWeekLetter: this.getDayOfWeekLetter(date),
+					dayOfWeekLetter: getDayOfWeekLetter(date),
 					date,
 				})
 			)
@@ -103,11 +102,6 @@ export class UserActivity {
 			this.cachedCaloDomain = this.calculateDomain(min, max, 100)
 		}
 		return this.cachedCaloDomain
-	}
-
-	private getDayOfWeekLetter(dateStr: string): string {
-		const dayOfWeek = new Date(dateStr).getDay()
-		return DAY_LETTERS[dayOfWeek]
 	}
 
 	get sessions(): Array<Session> {
