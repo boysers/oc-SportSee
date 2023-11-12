@@ -1,4 +1,4 @@
-import { USER_ID_DEFAULT } from '@/constants'
+import { USER_ID_DEFAULT } from '@/utils/constants'
 import { UserActivityModel, UserModel, UserPerformanceModel } from '@/models'
 import { UserService } from '@/services'
 import { LoaderFunction } from 'react-router-dom'

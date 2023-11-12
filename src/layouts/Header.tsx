@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import sportSeeLogo from '@/assets/sportsee_logo.svg'
-import { PAGE_PATH_NAMES } from '../constants'
+import { PAGE_PATH_NAMES } from '../utils/constants'
 
 const Navbar: React.FC = () => {
 	return (

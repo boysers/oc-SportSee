@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Header } from './Header'
-import { BASE_DOCUMENT_TITLE, PAGE_TITLES } from '@/constants'
+import { BASE_DOCUMENT_TITLE, PAGE_TITLES } from '@/utils/constants'
 
 export const RootLayout: React.FC = () => {
 	const location = useLocation()

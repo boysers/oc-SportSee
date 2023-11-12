@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router-dom'
 import { ProfileLayout, RootLayout } from './layouts'
-import { PAGE_PATH_NAMES } from './constants'
+import { PAGE_PATH_NAMES } from './utils/constants'
 import { ProfilePage, profilePageLoader } from './pages'
 
 export const routes: Array<RouteObject> = [
