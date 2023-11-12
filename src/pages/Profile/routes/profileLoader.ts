@@ -2,15 +2,10 @@ import { USER_ID_DEFAULT } from '@/utils/constants'
 import { UserActivityModel, UserModel, UserPerformanceModel } from '@/models'
 import { UserService } from '@/services'
 import { LoaderFunction } from 'react-router-dom'
+import { TProfileLoader } from '@/pages/Profile/routes/ProfileLoader.type'
 
-export type TProfilePageLoader = {
-	userMainData: UserModel
-	userActivity: UserActivityModel
-	userPerformance: UserPerformanceModel
-}
-
-export const profilePageLoader: LoaderFunction<
-	TProfilePageLoader
+export const profileLoader: LoaderFunction<
+	TProfileLoader
 > = async () => {
 	const {
 		getUserMainData,

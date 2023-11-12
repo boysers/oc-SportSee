@@ -3,7 +3,7 @@ import {
 	TUserActivitySessionItem,
 	TUserAverageSession as TUserAvgSessions,
 	TUserMergedActivity,
-} from '@/types'
+} from '@/utils/types/User.type'
 import { getDayOfWeekLetter, getMinMaxValues } from '@/utils/helpers'
 
 type NumberMin = number
@@ -14,11 +14,11 @@ type DomainTuple = [NumberMin, NumberMax]
 
 type Session = TUserActivitySessionItem & { dayOfWeekLetter: string }
 
-export class UserActivity {
+export class UserActivityModel {
 	static createUserActivity(
 		activity: TUserActivity,
 		userSessionsAvg: TUserAvgSessions
-	): UserActivity {
+	): UserActivityModel {
 		const { userId, sessions } = activity
 		const avgSessions = userSessionsAvg.sessions
 		const mergedSessions = sessions.map(({ day, ...session }, index) => ({
@@ -26,7 +26,7 @@ export class UserActivity {
 			...session,
 			...avgSessions[index],
 		}))
-		return new UserActivity({ userId, sessions: mergedSessions })
+		return new UserActivityModel({ userId, sessions: mergedSessions })
 	}
 
 	private cachedSessions: Array<Session> | undefined

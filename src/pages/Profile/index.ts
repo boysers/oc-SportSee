@@ -1,3 +1,3 @@
 export { ProfilePage } from './ProfilePage'
 
-export { profilePageLoader } from './loader'
+export { profileLoader } from './routes'

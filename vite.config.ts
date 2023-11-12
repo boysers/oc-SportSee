@@ -4,9 +4,7 @@ import { URL, fileURLToPath } from 'node:url'
 
 const alias = [
 	{ name: '@', path: './src' },
-	{ name: '@assets', path: './src/assets' },
 	{ name: '@components', path: './src/components' },
-	{ name: '@layouts', path: './src/layouts' },
 	{ name: '@pages', path: './src/pages' },
 	{ name: '@utils', path: './src/utils' },
 	{ name: '@lib', path: './src/lib' },

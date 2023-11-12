@@ -1,9 +1,3 @@
-export type IconProps = {
-	size?: number
-	color?: string
-	backgroundColor?: string
-}
-
 export type TUserMergedActivity = {
 	userId: TUserId
 	sessions: Array<TUserActivitySessionItem>

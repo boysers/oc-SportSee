@@ -1,4 +1,4 @@
-import { IconProps } from '@/types'
+import { IconProps } from '@/utils/types/IconProps'
 
 export const BurgerIcon: React.FC<IconProps> = ({
 	backgroundColor = '#FD5181',

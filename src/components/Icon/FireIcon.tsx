@@ -1,4 +1,4 @@
-import { IconProps } from '@/types'
+import { IconProps } from '@/utils/types/IconProps'
 
 export const FireIcon: React.FC<IconProps> = ({
 	backgroundColor = '#FF0000',

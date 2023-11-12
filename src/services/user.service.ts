@@ -9,7 +9,7 @@ import {
 	TUserActivity,
 	TUserAverageSession as TUserAvgSession,
 	TUserPerformance,
-} from '@/types'
+} from '@/utils/types/User.type'
 
 export class UserService {
 	static async getUserMainData(userId: number): Promise<TUser> {

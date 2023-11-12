@@ -1,5 +1,5 @@
-export { User as UserModel } from './user.model'
+export { UserModel } from './User.model'
 
-export { UserActivity as UserActivityModel } from './user-activity.model'
+export { UserActivityModel } from './UserActivity.model'
 
-export { UserPerformance as UserPerformanceModel } from './user-performance.model'
+export { UserPerformanceModel } from './UserPerformance.model'

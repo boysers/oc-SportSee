@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
-import sportSeeLogo from '@/assets/sportsee_logo.svg'
-import { PAGE_PATH_NAMES } from '../utils/constants'
+import { PAGE_PATH_NAMES } from '../../utils/constants'
 
 const Navbar: React.FC = () => {
 	return (
@@ -25,7 +24,7 @@ export const Header: React.FC = () => {
 	return (
 		<div className="Header">
 			<Link to={PAGE_PATH_NAMES['home']}>
-				<img src={sportSeeLogo} alt="SportSee logo" />
+				<img src="/images/logo/sportsee_logo.svg" alt="SportSee logo" />
 			</Link>
 			<Navbar />
 		</div>

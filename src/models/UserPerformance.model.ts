@@ -1,4 +1,4 @@
-import { TUserPerformance } from '@/types'
+import { TUserPerformance } from '@/utils/types/User.type'
 import { translateKind } from '@/utils/helpers'
 
 type TPerformanceItem = {
@@ -6,9 +6,9 @@ type TPerformanceItem = {
 	value: number
 }
 
-export class UserPerformance {
+export class UserPerformanceModel {
 	static createUserPerformance(userPerformanceData: TUserPerformance) {
-		return new UserPerformance(userPerformanceData)
+		return new UserPerformanceModel(userPerformanceData)
 	}
 
 	private cachedPerformanceData: Array<TPerformanceItem> | undefined

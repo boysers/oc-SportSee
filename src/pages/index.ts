@@ -1,1 +1,1 @@
-export { ProfilePage, profilePageLoader } from './ProfilePage'
+export { ProfilePage, profileLoader } from './Profile'

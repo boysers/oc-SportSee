@@ -1,7 +1,7 @@
 import { RouteObject } from 'react-router-dom'
-import { ProfileLayout, RootLayout } from './layouts'
+import { ProfileLayout, RootLayout } from './components/layout'
 import { PAGE_PATH_NAMES } from './utils/constants'
-import { ProfilePage, profilePageLoader } from './pages'
+import { ProfilePage, profileLoader } from './pages'
 
 export const routes: Array<RouteObject> = [
 	{
@@ -14,7 +14,7 @@ export const routes: Array<RouteObject> = [
 			},
 			{
 				path: PAGE_PATH_NAMES['profile'],
-				loader: profilePageLoader,
+				loader: profileLoader,
 				element: <ProfileLayout />,
 				id: 'user-profile',
 				children: [

@@ -1,8 +1,8 @@
-import { TUser } from '@/types'
+import { TUser } from '@/utils/types/User.type'
 
-export class User {
+export class UserModel {
 	static createUser(userData: TUser) {
-		return new User(userData)
+		return new UserModel(userData)
 	}
 
 	private cachedAvgScore: number | undefined

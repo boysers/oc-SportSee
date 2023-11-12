@@ -1,4 +1,4 @@
-import { AltersIcon, BikeIcon, SwimmingIcon, YogaIcon } from '@/components/Icon'
+import { AltersIcon, BikeIcon, SwimmingIcon, YogaIcon } from '@/components/icon'
 import { PropsWithChildren } from 'react'
 
 type NavbarProps = { className?: string }
