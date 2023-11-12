@@ -1,1 +1,0 @@
-export { CardInfo } from './CardInfo'
