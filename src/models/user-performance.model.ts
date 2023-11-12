@@ -1,5 +1,5 @@
 import { TUserPerformance } from '@/types'
-import { translateKind } from '@/utils'
+import { translateKind } from '@/utils/helpers'
 
 type TPerformanceItem = {
 	name: string

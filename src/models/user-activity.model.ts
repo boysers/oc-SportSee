@@ -4,7 +4,7 @@ import {
 	TUserAverageSession as TUserAvgSessions,
 	TUserMergedActivity,
 } from '@/types'
-import { getDayOfWeekLetter, getMinMaxValues } from '@/utils'
+import { getDayOfWeekLetter, getMinMaxValues } from '@/utils/helpers'
 
 type NumberMin = number
 type NumberMax = number
