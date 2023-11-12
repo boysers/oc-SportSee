@@ -1,20 +1,20 @@
+import { PATH_NAMES } from '@/utils/constants'
 import { Link } from 'react-router-dom'
-import { PAGE_PATH_NAMES } from '../../utils/constants'
 
 const Navbar: React.FC = () => {
 	return (
 		<ul className="Navbar">
 			<li>
-				<Link to={PAGE_PATH_NAMES['home']}>Accueil</Link>
+				<Link to={PATH_NAMES.home}>Accueil</Link>
 			</li>
 			<li>
-				<Link to={PAGE_PATH_NAMES['profile']}>Profil</Link>
+				<Link to={PATH_NAMES.profile}>Profil</Link>
 			</li>
 			<li>
-				<Link to={PAGE_PATH_NAMES['settings']}>Réglages</Link>
+				<Link to={PATH_NAMES.settings}>Réglages</Link>
 			</li>
 			<li>
-				<Link to={PAGE_PATH_NAMES['community']}>Communauté</Link>
+				<Link to={PATH_NAMES.community}>Communauté</Link>
 			</li>
 		</ul>
 	)
@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
 export const Header: React.FC = () => {
 	return (
 		<div className="Header">
-			<Link to={PAGE_PATH_NAMES['home']}>
+			<Link to={PATH_NAMES.home}>
 				<img src="/images/logo/sportsee_logo.svg" alt="SportSee logo" />
 			</Link>
 			<Navbar />

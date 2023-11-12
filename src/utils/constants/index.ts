@@ -1,17 +1,17 @@
-export const PAGE_PATH_NAMES = {
-	home: '/',
-	profile: 'profile',
-	settings: 'settings',
-	community: 'community',
-}
+export const BASE_DOCUMENT_TITLE = 'SportSee'
 
-export const PAGE_TITLES: Record<string, string> = {
+export const DOCUMENT_TITLES: Record<string, string> = {
 	'/profile': 'Profil',
 	'/settings': 'Réglages',
 	'/community': 'Communauté',
 }
 
-export const BASE_DOCUMENT_TITLE = 'SportSee'
+export const PATH_NAMES = {
+	home: '/',
+	profile: 'profile',
+	settings: 'settings',
+	community: 'community',
+}
 
 export const USER_ID_DEFAULT = 12
 

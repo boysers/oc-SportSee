@@ -1,11 +1,11 @@
 import { RouteObject } from 'react-router-dom'
 import { ProfileLayout, RootLayout } from './components/layout'
-import { PAGE_PATH_NAMES } from './utils/constants'
+import { PATH_NAMES } from './utils/constants'
 import { ProfilePage, profileLoader } from './pages'
 
 export const routes: Array<RouteObject> = [
 	{
-		path: PAGE_PATH_NAMES['home'],
+		path: PATH_NAMES.home,
 		element: <RootLayout />,
 		children: [
 			{
@@ -13,7 +13,7 @@ export const routes: Array<RouteObject> = [
 				element: <h1>Home page</h1>,
 			},
 			{
-				path: PAGE_PATH_NAMES['profile'],
+				path: PATH_NAMES.profile,
 				loader: profileLoader,
 				element: <ProfileLayout />,
 				id: 'user-profile',
@@ -25,11 +25,11 @@ export const routes: Array<RouteObject> = [
 				],
 			},
 			{
-				path: PAGE_PATH_NAMES['settings'],
+				path: PATH_NAMES.settings,
 				element: <h1>Réglages</h1>,
 			},
 			{
-				path: PAGE_PATH_NAMES['community'],
+				path: PATH_NAMES.community,
 				element: <h1>Communauté</h1>,
 			},
 			{

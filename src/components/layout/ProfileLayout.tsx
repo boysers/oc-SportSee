@@ -1,4 +1,13 @@
 import { Outlet } from 'react-router-dom'
-import { Sidebar } from './Sidebar'
+import { Sidebar } from '../navigation'
 
-export const ProfileLayout: React.FC = () => <Sidebar children={<Outlet />} />
+export const ProfileLayout: React.FC = () => {
+	return (
+		<div className="ProfileLayout">
+			<Sidebar />
+			<div className="ProfileLayout__container">
+				<Outlet />
+			</div>
+		</div>
+	)
+}
