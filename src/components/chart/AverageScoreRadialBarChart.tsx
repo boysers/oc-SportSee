@@ -8,22 +8,24 @@ import {
 	ResponsiveContainer,
 } from '@/lib/recharts'
 
+type AverageScoreRadialBarChartProps = {
+	averageScore: TAverageScore
+}
+
 type CustomLegendProps = LegendProps & {
-	avgScore: number
+	averageScore: TAverageScore
 	responsiveScale: number
 }
 
-type UserAvgScoreRadialBarChartProps = {
-	avgScore: number
-}
+type TAverageScore = number
 
-const CustomLegend: React.FC<CustomLegendProps> = ({ avgScore, responsiveScale }) => {
+const CustomLegend: React.FC<CustomLegendProps> = ({ averageScore, responsiveScale }) => {
 	return (
 		<p
-			className="UserAvgScorePieChart__legend"
+			className="AverageScoreRadialBarChart__legend"
 			style={{ transform: `scale(${responsiveScale})` }}
 		>
-			{`${Math.floor(avgScore * 100)}%`}
+			{`${Math.floor(averageScore * 100)}%`}
 			<br />
 			<span>
 				de votre
@@ -34,8 +36,8 @@ const CustomLegend: React.FC<CustomLegendProps> = ({ avgScore, responsiveScale }
 	)
 }
 
-export const UserAvgScoreRadialBarChart: React.FC<UserAvgScoreRadialBarChartProps> = ({
-	avgScore,
+export const AverageScoreRadialBarChart: React.FC<AverageScoreRadialBarChartProps> = ({
+	averageScore,
 }) => {
 	const ref = useRef<HTMLDivElement>(null)
 	const [responsiveScale, setResponsiveScale] = useState(1)
@@ -49,6 +51,7 @@ export const UserAvgScoreRadialBarChart: React.FC<UserAvgScoreRadialBarChartProp
 			const height = Number((element.clientHeight / 250).toFixed(2))
 			setResponsiveScale(height < width ? height : width)
 		}
+		handleResize()
 
 		window.addEventListener('resize', handleResize)
 
@@ -60,7 +63,7 @@ export const UserAvgScoreRadialBarChart: React.FC<UserAvgScoreRadialBarChartProp
 	return (
 		<div
 			ref={ref}
-			className="UserAvgScorePieChart"
+			className="AverageScoreRadialBarChart"
 			style={{
 				position: 'relative',
 				width: '100%',
@@ -75,14 +78,14 @@ export const UserAvgScoreRadialBarChart: React.FC<UserAvgScoreRadialBarChartProp
 					top: 0,
 				}}
 			>
-				<p className="UserAvgScorePieChart__title">Score</p>
+				<p className="AverageScoreRadialBarChart__title">Score</p>
 				<ResponsiveContainer>
 					<RadialBarChart
 						cx="50%"
 						cy="50%"
 						innerRadius="65%"
 						barSize={10}
-						data={[{ value: avgScore }]}
+						data={[{ value: averageScore }]}
 						startAngle={90}
 						endAngle={360 + 90}
 					>
@@ -104,7 +107,7 @@ export const UserAvgScoreRadialBarChart: React.FC<UserAvgScoreRadialBarChartProp
 							verticalAlign="middle"
 							content={
 								<CustomLegend
-									avgScore={avgScore}
+									averageScore={averageScore}
 									responsiveScale={responsiveScale}
 								/>
 							}

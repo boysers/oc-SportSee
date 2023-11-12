@@ -1,9 +1,9 @@
-.UserActivityBarChart {
+.DailyActivityBarChart {
 	padding-bottom: 290px;
 	background-color: #fbfbfb;
 	border-radius: 8px;
 
-	.CustomLegend {
+	&__legend {
 		display: flex;
 		justify-content: space-between;
 		margin: 0 16px;
@@ -43,7 +43,7 @@
 		}
 	}
 
-	.CustomTooltip {
+	&__tooltip {
 		list-style: none;
 		background-color: $primary-color;
 		color: #fff;

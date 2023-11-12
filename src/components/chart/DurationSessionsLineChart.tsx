@@ -1,44 +1,43 @@
-import { UserActivityModel } from '@/models'
 import {
 	Legend,
 	Line,
 	LineChart,
-	NameType,
 	ResponsiveContainer,
 	Tooltip,
 	TooltipPayloadType,
-	ValueType,
 } from '@/lib/recharts'
 
-type PayloadItemType = TooltipPayloadType<ValueType, NameType>
-
-type CustomTooltipProps = {
-	payload?: Array<PayloadItemType>
+type DurationSessionsLineChartProps = {
+	durationSessions: Array<TDurationSessionItem>
 }
 
-type UserAvgSessionsLineChartProps = {
-	userActivity: UserActivityModel
+type CustomTooltipProps = {
+	payload?: TooltipPayloadType
+}
+
+type TDurationSessionItem = {
+	dayOfWeekLetter: string
+	sessionLength: number
 }
 
 const CustomLegend: React.FC = () => {
-	return <p className="UserAvgSessionsLineChart__title">Durée moyenne des sessions</p>
+	return <p className="DurationSessionsLineChart__title">Durée moyenne des sessions</p>
 }
 
 const CustomTooltip: React.FC<CustomTooltipProps> = ({ payload }) => {
 	return (
-		<ul className="UserAvgSessionsLineChart__tooltip">
+		<ul className="DurationSessionsLineChart__tooltip">
 			{payload?.map(({ value }, index) => <li key={`${index}-${value}`}>{value} min</li>)}
 		</ul>
 	)
 }
 
-export const UserAvgSessionsLineChart: React.FC<UserAvgSessionsLineChartProps> = ({
-	userActivity,
+export const DurationSessionsLineChart: React.FC<DurationSessionsLineChartProps> = ({
+	durationSessions,
 }) => {
-	const { sessions } = userActivity
 	return (
 		<div
-			className="UserAvgSessionsLineChart"
+			className="DurationSessionsLineChart"
 			style={{
 				position: 'relative',
 				width: '100%',
@@ -55,7 +54,7 @@ export const UserAvgSessionsLineChart: React.FC<UserAvgSessionsLineChartProps> =
 			>
 				<ResponsiveContainer>
 					<LineChart
-						data={sessions}
+						data={durationSessions}
 						margin={{
 							top: 0,
 							right: 0,
@@ -74,8 +73,8 @@ export const UserAvgSessionsLineChart: React.FC<UserAvgSessionsLineChartProps> =
 						/>
 					</LineChart>
 				</ResponsiveContainer>
-				<div className="UserAvgSessionsLineChart__labels">
-					{sessions.map(({ dayOfWeekLetter }, index) => {
+				<div className="DurationSessionsLineChart__labels">
+					{durationSessions.map(({ dayOfWeekLetter }, index) => {
 						return <span key={`${index}-${dayOfWeekLetter}`}>{dayOfWeekLetter}</span>
 					})}
 				</div>

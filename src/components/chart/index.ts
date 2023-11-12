@@ -1,7 +1,7 @@
-export { UserActivityBarChart } from './UserActivityBarChart'
+export { DailyActivityBarChart } from './DailyActivityBarChart'
 
-export { UserAvgSessionsLineChart } from './UserAvgSessionsLineChart'
+export { DurationSessionsLineChart } from './DurationSessionsLineChart'
 
-export { UserPerformanceRadarChart } from './UserPerformanceRadarChart'
+export { ActivityTypeRadarChart } from './ActivityTypeRadarChart'
 
-export { UserAvgScoreRadialBarChart } from './UserAvgScoreRadialBarChart'
+export { AverageScoreRadialBarChart } from './AverageScoreRadialBarChart'

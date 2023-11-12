@@ -1,4 +1,13 @@
+import type { NameType, Payload, ValueType } from 'recharts/types/component/DefaultTooltipContent'
+
+type TooltipPayloadTypeItem = Payload<ValueType, NameType>
+
+export type TooltipPayloadType = Array<TooltipPayloadTypeItem>
+
+export type { LegendProps } from 'recharts'
+
 export {
+	ResponsiveContainer,
 	BarChart,
 	Bar,
 	LineChart,
@@ -7,19 +16,11 @@ export {
 	Radar,
 	PolarAngleAxis,
 	PolarGrid,
+	CartesianGrid,
 	RadialBar,
 	RadialBarChart,
 	XAxis,
 	YAxis,
-	CartesianGrid,
 	Tooltip,
 	Legend,
-	ResponsiveContainer,
-	type LegendProps,
 } from 'recharts'
-
-export type {
-	NameType,
-	Payload as TooltipPayloadType,
-	ValueType,
-} from 'recharts/types/component/DefaultTooltipContent'

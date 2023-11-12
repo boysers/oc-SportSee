@@ -1,15 +1,15 @@
 @mixin setHeight($scale) {
-	.UserActivityBarChart {
+	.DailyActivityBarChart {
 		padding-bottom: calc(290px / $scale);
 	}
 
-	.UserAvgScorePieChart,
-	.UserAvgSessionsLineChart,
-	.UserPerformanceRadarChart {
+	.AverageScoreRadialBarChart,
+	.DurationSessionsLineChart,
+	.ActivityTypeRadarChart {
 		padding-bottom: calc(263px / $scale);
 	}
 
-	.CardInfo {
+	.KeyInfoCard {
 		height: calc(124px / $scale);
 	}
 }

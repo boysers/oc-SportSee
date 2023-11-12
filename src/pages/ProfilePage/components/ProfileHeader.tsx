@@ -1,6 +1,6 @@
-type ProfileHeader = { firstName: string }
+type ProfileHeaderProps = { firstName: string }
 
-export const ProfileHeader: React.FC<ProfileHeader> = ({ firstName }) => {
+export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ firstName }) => {
 	return (
 		<div className="ProfilePage__header">
 			<h1 className="ProfilePage__header__title">

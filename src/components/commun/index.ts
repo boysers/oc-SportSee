@@ -1,1 +1,1 @@
-export { CardInfo } from './CardInfo'
+export { KeyInfoCard } from './KeyInfoCard'

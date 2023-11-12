@@ -4,36 +4,39 @@ import {
 	CartesianGrid,
 	Legend,
 	LegendProps,
-	NameType,
 	ResponsiveContainer,
 	Tooltip,
 	TooltipPayloadType,
-	ValueType,
 	XAxis,
 	YAxis,
 } from '@/lib/recharts'
-import { UserActivityModel } from '@/models'
 
-type PayloadItemType = TooltipPayloadType<ValueType, NameType>
-
-type CustomTooltipProps = {
-	payload?: Array<PayloadItemType>
+type DailyActivityBarChartProps = {
+	sessions: Array<TSessionItem>
+	caloriesDomain: DomainTuple
+	kilogramDomain: DomainTuple
 }
 
-type UserActivityBarChartProps = { userActivity: UserActivityModel }
+type CustomTooltipProps = {
+	payload?: TooltipPayloadType
+}
+
+type DomainTuple = [number, number]
+
+type TSessionItem = { dayOfWeekLetter: string; kilogram: number; calories: number }
 
 const CustomLegend: React.FC<LegendProps> = ({ payload }) => {
 	return (
-		<div className="CustomLegend">
-			<p className="CustomLegend__title">Activité quotidienne</p>
-			<ul className="CustomLegend__payload">
+		<div className="DailyActivityBarChart__legend">
+			<p className="DailyActivityBarChart__legend__title">Activité quotidienne</p>
+			<ul className="DailyActivityBarChart__legend__payload">
 				{payload?.map((entry, index) => {
 					const isCalories = entry.value === 'calories'
-					const iconClassName = `CustomLegend__payload__icon CustomLegend__payload__icon--${
+					const iconClassName = `DailyActivityBarChart__legend__payload__icon DailyActivityBarChart__legend__payload__icon--${
 						isCalories ? 'red' : 'default'
 					}`
 					return (
-						<li key={index} className="CustomLegend__payload__label">
+						<li key={index} className="DailyActivityBarChart__legend__payload__label">
 							<div className={iconClassName}></div>
 							{isCalories ? `Calories brûlées (kCal)` : `Poids (kg)`}
 						</li>
@@ -46,19 +49,19 @@ const CustomLegend: React.FC<LegendProps> = ({ payload }) => {
 
 const CustomTooltip: React.FC<CustomTooltipProps> = ({ payload }) => {
 	return (
-		<ul className="CustomTooltip">
+		<ul className="DailyActivityBarChart__tooltip">
 			{payload?.map(({ value, name }, index) => (
-				<li key={`${index}-${name}`}>{`${value}${name === 'calories' ? `kcal` : `kg`}`}</li>
+				<li key={`${index}-${name}`}>{`${value}${name === 'calories' ? `kCal` : `kg`}`}</li>
 			))}
 		</ul>
 	)
 }
 
-export const UserActivityBarChart: React.FC<UserActivityBarChartProps> = ({ userActivity }) => {
-	const { sessions, caloriesDomain, kilogramDomain } = userActivity
+export const DailyActivityBarChart: React.FC<DailyActivityBarChartProps> = (props) => {
+	const { sessions, caloriesDomain, kilogramDomain } = props
 	return (
 		<div
-			className="UserActivityBarChart"
+			className="DailyActivityBarChart"
 			style={{
 				position: 'relative',
 				width: '100%',

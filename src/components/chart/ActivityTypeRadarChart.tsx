@@ -1,45 +1,44 @@
 import { useEffect, useRef, useState } from 'react'
-import { UserPerformanceModel } from '@/models'
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from '@/lib/recharts'
 
-type UserPerformanceRadarChartProps = {
-	userPerformance: UserPerformanceModel
+type ActivityTypeRadarChartProps = {
+	activities: Array<TActivityItem>
 }
 
-export const UserPerformanceRadarChart: React.FC<UserPerformanceRadarChartProps> = ({
-	userPerformance,
-}) => {
-	const { data } = userPerformance
+type TActivityItem = {
+	name: string
+	value: number
+}
+
+export const ActivityTypeRadarChart: React.FC<ActivityTypeRadarChartProps> = ({ activities }) => {
 	const ref = useRef<HTMLDivElement>(null)
 	const [responsiveScale, setResponsiveScale] = useState(1)
 
 	useEffect(() => {
 		const element = ref.current
-
 		if (!element) return
 
 		const handleResize = () => {
 			const scale = Number((element.clientWidth / 200).toFixed(2))
 			scale < 1 ? setResponsiveScale(scale + 0.15) : setResponsiveScale(scale)
 		}
+		handleResize()
 
-		const resizeObserver = new ResizeObserver(handleResize)
-
-		resizeObserver.observe(element)
+		window.addEventListener('resize', handleResize)
 
 		return () => {
-			resizeObserver.unobserve(element)
-			resizeObserver.disconnect()
+			window.removeEventListener('resize', handleResize)
 		}
 	}, [])
 
 	return (
 		<div
 			ref={ref}
-			className="UserPerformanceRadarChart"
+			className="ActivityTypeRadarChart"
 			style={{
 				position: 'relative',
 				width: '100%',
+				overflow: 'hidden',
 			}}
 		>
 			<div
@@ -57,7 +56,7 @@ export const UserPerformanceRadarChart: React.FC<UserPerformanceRadarChartProps>
 						cx="50%"
 						cy="50%"
 						outerRadius="50%"
-						data={[...data].reverse()}
+						data={[...activities].reverse()}
 						margin={{
 							top: 0,
 							right: 8,
