@@ -12,9 +12,7 @@ export class UserModel {
 	private scoreFactory() {
 		if (!this.cachedAvgScore) {
 			const baseScore =
-				('score' in this.userData
-					? this.userData.score
-					: this.userData.todayScore) ?? 0
+				('score' in this.userData ? this.userData.score : this.userData.todayScore) ?? 0
 			this.cachedAvgScore = baseScore
 		}
 		return this.cachedAvgScore

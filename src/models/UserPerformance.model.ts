@@ -13,9 +13,7 @@ export class UserPerformanceModel {
 
 	private cachedPerformanceData: Array<TPerformanceItem> | undefined
 
-	private constructor(
-		private readonly userPerformanceData: TUserPerformance
-	) {}
+	private constructor(private readonly userPerformanceData: TUserPerformance) {}
 
 	private calculatePerformanceData() {
 		if (!this.cachedPerformanceData) {

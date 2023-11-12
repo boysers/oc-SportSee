@@ -33,14 +33,9 @@ const CustomLegend: React.FC<LegendProps> = ({ payload }) => {
 						isCalories ? 'red' : 'default'
 					}`
 					return (
-						<li
-							key={index}
-							className="CustomLegend__payload__label"
-						>
+						<li key={index} className="CustomLegend__payload__label">
 							<div className={iconClassName}></div>
-							{isCalories
-								? `Calories brûlées (kCal)`
-								: `Poids (kg)`}
+							{isCalories ? `Calories brûlées (kCal)` : `Poids (kg)`}
 						</li>
 					)
 				})}
@@ -53,17 +48,13 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({ payload }) => {
 	return (
 		<ul className="CustomTooltip">
 			{payload?.map(({ value, name }, index) => (
-				<li key={`${index}-${name}`}>
-					{`${value}${name === 'calories' ? `kcal` : `kg`}`}
-				</li>
+				<li key={`${index}-${name}`}>{`${value}${name === 'calories' ? `kcal` : `kg`}`}</li>
 			))}
 		</ul>
 	)
 }
 
-export const UserActivityBarChart: React.FC<UserActivityBarChartProps> = ({
-	userActivity,
-}) => {
+export const UserActivityBarChart: React.FC<UserActivityBarChartProps> = ({ userActivity }) => {
 	const { sessions, caloriesDomain, kilogramDomain } = userActivity
 	return (
 		<div
@@ -123,10 +114,7 @@ export const UserActivityBarChart: React.FC<UserActivityBarChartProps> = ({
 							hide
 						/>
 						<Tooltip content={<CustomTooltip />} />
-						<Legend
-							verticalAlign="top"
-							content={<CustomLegend />}
-						/>
+						<Legend verticalAlign="top" content={<CustomLegend />} />
 						<Bar
 							yAxisId="kilogram"
 							dataKey="kilogram"

@@ -4,15 +4,9 @@ import { UserService } from '@/services'
 import { LoaderFunction } from 'react-router-dom'
 import { TProfileLoader } from '@/pages/Profile/routes/ProfileLoader.type'
 
-export const profileLoader: LoaderFunction<
-	TProfileLoader
-> = async () => {
-	const {
-		getUserMainData,
-		getUserActivity,
-		getUserAverageSessions,
-		getUserPerformance,
-	} = UserService
+export const profileLoader: LoaderFunction<TProfileLoader> = async () => {
+	const { getUserMainData, getUserActivity, getUserAverageSessions, getUserPerformance } =
+		UserService
 
 	const user = await getUserMainData(USER_ID_DEFAULT)
 	const userMainData = UserModel.createUser(user)
@@ -24,13 +18,9 @@ export const profileLoader: LoaderFunction<
 		getUserPerformance(userId),
 	])
 
-	const userActivity = UserActivityModel.createUserActivity(
-		activity,
-		sessionsAvg
-	)
+	const userActivity = UserActivityModel.createUserActivity(activity, sessionsAvg)
 
-	const userPerformance =
-		UserPerformanceModel.createUserPerformance(performance)
+	const userPerformance = UserPerformanceModel.createUserPerformance(performance)
 
 	return {
 		userMainData,

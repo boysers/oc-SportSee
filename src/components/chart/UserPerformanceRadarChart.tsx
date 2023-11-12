@@ -1,20 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { UserPerformanceModel } from '@/models'
-import {
-	PolarAngleAxis,
-	PolarGrid,
-	Radar,
-	RadarChart,
-	ResponsiveContainer,
-} from '@/lib/recharts'
+import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from '@/lib/recharts'
 
 type UserPerformanceRadarChartProps = {
 	userPerformance: UserPerformanceModel
 }
 
-export const UserPerformanceRadarChart: React.FC<
-	UserPerformanceRadarChartProps
-> = ({ userPerformance }) => {
+export const UserPerformanceRadarChart: React.FC<UserPerformanceRadarChartProps> = ({
+	userPerformance,
+}) => {
 	const { data } = userPerformance
 	const ref = useRef<HTMLDivElement>(null)
 	const [responsiveScale, setResponsiveScale] = useState(1)
@@ -26,9 +20,7 @@ export const UserPerformanceRadarChart: React.FC<
 
 		const handleResize = () => {
 			const scale = Number((element.clientWidth / 200).toFixed(2))
-			scale < 1
-				? setResponsiveScale(scale + 0.15)
-				: setResponsiveScale(scale)
+			scale < 1 ? setResponsiveScale(scale + 0.15) : setResponsiveScale(scale)
 		}
 
 		const resizeObserver = new ResizeObserver(handleResize)
@@ -74,11 +66,7 @@ export const UserPerformanceRadarChart: React.FC<
 						}}
 					>
 						<PolarGrid radialLines={false} stroke="#fff" />
-						<PolarAngleAxis
-							dataKey="name"
-							stroke="#fff"
-							tickLine={false}
-						/>
+						<PolarAngleAxis dataKey="name" stroke="#fff" tickLine={false} />
 						<Radar
 							name="Performance"
 							dataKey="value"

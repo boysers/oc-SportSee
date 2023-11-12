@@ -35,44 +35,30 @@ export class UserActivityModel {
 	private cachedCaloMinMax: MinMaxTuple | undefined
 	private cachedCaloDomain: DomainTuple | undefined
 
-	private constructor(
-		private readonly userActivityData: TUserMergedActivity
-	) {}
+	private constructor(private readonly userActivityData: TUserMergedActivity) {}
 
 	private calculateSessions(): Array<Session> {
 		if (!this.cachedSessions) {
-			this.cachedSessions = this.userActivityData.sessions.map(
-				({ date, ...session }) => ({
-					...session,
-					dayOfWeekLetter: getDayOfWeekLetter(date),
-					date,
-				})
-			)
+			this.cachedSessions = this.userActivityData.sessions.map(({ date, ...session }) => ({
+				...session,
+				dayOfWeekLetter: getDayOfWeekLetter(date),
+				date,
+			}))
 		}
 		return this.cachedSessions
 	}
 
-	private calculateDomain(
-		valueMin: number,
-		valueMax: number,
-		step: number
-	): DomainTuple {
+	private calculateDomain(valueMin: number, valueMax: number, step: number): DomainTuple {
 		const domainMin =
-			valueMin % step === 0
-				? valueMin - step
-				: Math.floor(valueMin / step) * step
+			valueMin % step === 0 ? valueMin - step : Math.floor(valueMin / step) * step
 		const domainMax =
-			valueMax % step === 0
-				? valueMax + step
-				: Math.floor(valueMax / step) * step + step
+			valueMax % step === 0 ? valueMax + step : Math.floor(valueMax / step) * step + step
 		return [domainMin, domainMax]
 	}
 
 	private calculateKiloMinMax(): MinMaxTuple {
 		if (!this.cachedKiloMinMax) {
-			const kilograms = this.calculateSessions().map(
-				({ kilogram }) => kilogram
-			)
+			const kilograms = this.calculateSessions().map(({ kilogram }) => kilogram)
 			this.cachedKiloMinMax = getMinMaxValues(kilograms)
 		}
 		return this.cachedKiloMinMax
@@ -80,9 +66,7 @@ export class UserActivityModel {
 
 	private calculateCaloMinMax(): MinMaxTuple {
 		if (!this.cachedCaloMinMax) {
-			const calories = this.calculateSessions().map(
-				({ calories }) => calories
-			)
+			const calories = this.calculateSessions().map(({ calories }) => calories)
 			this.cachedCaloMinMax = getMinMaxValues(calories)
 		}
 		return this.cachedCaloMinMax

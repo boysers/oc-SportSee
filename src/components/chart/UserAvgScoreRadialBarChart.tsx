@@ -17,10 +17,7 @@ type UserAvgScoreRadialBarChartProps = {
 	avgScore: number
 }
 
-const CustomLegend: React.FC<CustomLegendProps> = ({
-	avgScore,
-	responsiveScale,
-}) => {
+const CustomLegend: React.FC<CustomLegendProps> = ({ avgScore, responsiveScale }) => {
 	return (
 		<p
 			className="UserAvgScorePieChart__legend"
@@ -37,9 +34,9 @@ const CustomLegend: React.FC<CustomLegendProps> = ({
 	)
 }
 
-export const UserAvgScoreRadialBarChart: React.FC<
-	UserAvgScoreRadialBarChartProps
-> = ({ avgScore }) => {
+export const UserAvgScoreRadialBarChart: React.FC<UserAvgScoreRadialBarChartProps> = ({
+	avgScore,
+}) => {
 	const ref = useRef<HTMLDivElement>(null)
 	const [responsiveScale, setResponsiveScale] = useState(1)
 
@@ -113,12 +110,7 @@ export const UserAvgScoreRadialBarChart: React.FC<
 							}
 							align="center"
 						/>
-						<circle
-							fill="#fff"
-							cx="50%"
-							cy="50%"
-							r={`${responsiveScale * 72.5}px`}
-						/>
+						<circle fill="#fff" cx="50%" cy="50%" r={`${responsiveScale * 72.5}px`} />
 					</RadialBarChart>
 				</ResponsiveContainer>
 			</div>

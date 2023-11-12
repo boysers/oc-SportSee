@@ -1,3 +1,3 @@
 export { ProfileHeader } from './ProfileHeader'
 
-export { CardInfoList } from './ProfileCardInfoList'
+export { ProfileCardInfoList } from './ProfileCardInfoList'

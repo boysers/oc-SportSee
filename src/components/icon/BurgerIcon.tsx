@@ -13,13 +13,7 @@ export const BurgerIcon: React.FC<IconProps> = ({
 			viewBox="0 0 60 60"
 			fill="none"
 		>
-			<rect
-				width={size}
-				height={size}
-				rx="6"
-				fill={backgroundColor}
-				fillOpacity="0.1"
-			/>
+			<rect width={size} height={size} rx="6" fill={backgroundColor} fillOpacity="0.1" />
 			<path
 				d="M21.25 36C21.25 38.125 22.875 39.75 25 39.75H35C37.125 39.75 38.75 38.125 38.75 36H21.25Z"
 				fill={color}

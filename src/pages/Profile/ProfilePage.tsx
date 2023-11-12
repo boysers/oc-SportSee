@@ -5,7 +5,7 @@ import {
 	UserPerformanceRadarChart,
 } from '@/components/chart'
 import { useRouteLoaderData } from 'react-router-dom'
-import { CardInfoList, ProfileHeader } from './components'
+import { ProfileCardInfoList, ProfileHeader } from './components'
 import { TProfileLoader } from './routes'
 
 export const ProfilePage: React.FC = () => {
@@ -21,13 +21,11 @@ export const ProfilePage: React.FC = () => {
 					<UserActivityBarChart userActivity={userActivity} />
 					<div className="ProfilePage__container__charts__stats">
 						<UserAvgSessionsLineChart userActivity={userActivity} />
-						<UserPerformanceRadarChart
-							userPerformance={userPerformance}
-						/>
+						<UserPerformanceRadarChart userPerformance={userPerformance} />
 						<UserAvgScoreRadialBarChart avgScore={avgScore} />
 					</div>
 				</div>
-				<CardInfoList keyData={keyData} />
+				<ProfileCardInfoList keyData={keyData} />
 			</div>
 		</div>
 	)

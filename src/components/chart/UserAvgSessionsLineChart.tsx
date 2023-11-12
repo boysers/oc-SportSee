@@ -21,26 +21,20 @@ type UserAvgSessionsLineChartProps = {
 }
 
 const CustomLegend: React.FC = () => {
-	return (
-		<p className="UserAvgSessionsLineChart__title">
-			Durée moyenne des sessions
-		</p>
-	)
+	return <p className="UserAvgSessionsLineChart__title">Durée moyenne des sessions</p>
 }
 
 const CustomTooltip: React.FC<CustomTooltipProps> = ({ payload }) => {
 	return (
 		<ul className="UserAvgSessionsLineChart__tooltip">
-			{payload?.map(({ value }, index) => (
-				<li key={`${index}-${value}`}>{value} min</li>
-			))}
+			{payload?.map(({ value }, index) => <li key={`${index}-${value}`}>{value} min</li>)}
 		</ul>
 	)
 }
 
-export const UserAvgSessionsLineChart: React.FC<
-	UserAvgSessionsLineChartProps
-> = ({ userActivity }) => {
+export const UserAvgSessionsLineChart: React.FC<UserAvgSessionsLineChartProps> = ({
+	userActivity,
+}) => {
 	const { sessions } = userActivity
 	return (
 		<div
@@ -70,10 +64,7 @@ export const UserAvgSessionsLineChart: React.FC<
 						}}
 					>
 						<Tooltip content={<CustomTooltip />} />
-						<Legend
-							verticalAlign="top"
-							content={<CustomLegend />}
-						/>
+						<Legend verticalAlign="top" content={<CustomLegend />} />
 						<Line
 							type="monotone"
 							dataKey="sessionLength"
@@ -85,11 +76,7 @@ export const UserAvgSessionsLineChart: React.FC<
 				</ResponsiveContainer>
 				<div className="UserAvgSessionsLineChart__labels">
 					{sessions.map(({ dayOfWeekLetter }, index) => {
-						return (
-							<span key={`${index}-${dayOfWeekLetter}`}>
-								{dayOfWeekLetter}
-							</span>
-						)
+						return <span key={`${index}-${dayOfWeekLetter}`}>{dayOfWeekLetter}</span>
 					})}
 				</div>
 			</div>

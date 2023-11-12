@@ -7,9 +7,7 @@ export const RootLayout: React.FC = () => {
 	const location = useLocation()
 	useEffect(() => {
 		const title = PAGE_TITLES[location.pathname]
-		document.title = title
-			? `${title} - ${BASE_DOCUMENT_TITLE}`
-			: BASE_DOCUMENT_TITLE
+		document.title = title ? `${title} - ${BASE_DOCUMENT_TITLE}` : BASE_DOCUMENT_TITLE
 	}, [location])
 	return (
 		<>
