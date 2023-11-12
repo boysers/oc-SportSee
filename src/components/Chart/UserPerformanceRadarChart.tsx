@@ -48,7 +48,6 @@ export const UserPerformanceRadarChart: React.FC<
 			style={{
 				position: 'relative',
 				width: '100%',
-				paddingBottom: '263px',
 			}}
 		>
 			<div

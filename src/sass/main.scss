@@ -1,17 +1,18 @@
+@import './utils/mixins';
+@import './utils/variables';
+
 @import './base/normalize';
 @import './base/reset';
 @import './base/fonts';
 @import './base/typography';
-
-@import './utils/variables';
-
-@import './layouts/header';
-@import './layouts/profile-layout';
-
-@import './pages/profile-page.scss';
 
 @import './components/user-activity-bar-chart';
 @import './components/user-avg-sessions-line-chart';
 @import './components/user-performance-bar-chart';
 @import './components/user-avg-score-pie-chart';
 @import './components/card-info';
+
+@import './layouts/header';
+@import './layouts/profile-layout';
+
+@import './pages/profile-page.scss';

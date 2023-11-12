@@ -1,12 +1,30 @@
 .ProfilePage {
 	margin-top: 64px;
-	margin-bottom: 32px;
 	max-width: calc(1126px + 32px);
 	width: 100%;
 	padding: 0 32px;
 
+	@media screen and (max-height: 1024px) {
+		margin-top: 32px;
+	}
+
+	@media screen and (max-height: 900px) {
+		$scale: 1.2;
+		@include setHeight($scale);
+	}
+
+	@media screen and (max-height: 850px) {
+		$scale: 1.2;
+		@include setHeight($scale);
+	}
+
+	@media screen and (max-height: 810px) {
+		$scale: 1.3;
+		@include setHeight($scale);
+	}
+
 	&__header {
-		margin-bottom: 72px;
+		margin-bottom: 48px;
 
 		&__title {
 			margin: 0;
@@ -24,7 +42,6 @@
 
 		&__charts {
 			flex: 1;
-
 			display: flex;
 			gap: 30px;
 			flex-direction: column;

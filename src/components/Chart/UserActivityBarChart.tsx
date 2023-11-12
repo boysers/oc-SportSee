@@ -71,7 +71,6 @@ export const UserActivityBarChart: React.FC<UserActivityBarChartProps> = ({
 			style={{
 				position: 'relative',
 				width: '100%',
-				paddingBottom: '320px',
 			}}
 		>
 			<div

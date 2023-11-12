@@ -45,21 +45,18 @@ export const UserAvgScoreRadialBarChart: React.FC<
 
 	useEffect(() => {
 		const element = ref.current
-
 		if (!element) return
 
 		const handleResize = () => {
-			const scale = Number((element.clientWidth / 250).toFixed(2))
-			setResponsiveScale(scale)
+			const width = Number((element.clientWidth / 250).toFixed(2))
+			const height = Number((element.clientHeight / 250).toFixed(2))
+			setResponsiveScale(height < width ? height : width)
 		}
 
-		const resizeObserver = new ResizeObserver(handleResize)
-
-		resizeObserver.observe(element)
+		window.addEventListener('resize', handleResize)
 
 		return () => {
-			resizeObserver.unobserve(element)
-			resizeObserver.disconnect()
+			window.removeEventListener('resize', handleResize)
 		}
 	}, [])
 
@@ -70,7 +67,6 @@ export const UserAvgScoreRadialBarChart: React.FC<
 			style={{
 				position: 'relative',
 				width: '100%',
-				paddingBottom: '263px',
 			}}
 		>
 			<div
@@ -121,7 +117,7 @@ export const UserAvgScoreRadialBarChart: React.FC<
 							fill="#fff"
 							cx="50%"
 							cy="50%"
-							r={`${responsiveScale * 73}px`}
+							r={`${responsiveScale * 72.5}px`}
 						/>
 					</RadialBarChart>
 				</ResponsiveContainer>
