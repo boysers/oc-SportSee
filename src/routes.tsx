@@ -2,6 +2,7 @@ import { RouteObject } from 'react-router-dom'
 import { ProfileLayout, RootLayout } from './components/layout'
 import { PATH_NAMES } from './utils/constants'
 import { ProfilePage, profileLoader } from './pages/ProfilePage'
+import { ErrorBoundary } from './components/commun'
 
 export const routes: Array<RouteObject> = [
 	{
@@ -10,35 +11,31 @@ export const routes: Array<RouteObject> = [
 		children: [
 			{
 				index: true,
-				element: <h1>Home page</h1>,
+				element: null,
 			},
 			{
 				path: PATH_NAMES.profile,
-				loader: profileLoader,
 				element: <ProfileLayout />,
-				id: 'user-profile',
+				errorElement: <ErrorBoundary />,
 				children: [
 					{
 						index: true,
 						element: <ProfilePage />,
+						loader: profileLoader,
 					},
 				],
 			},
 			{
 				path: PATH_NAMES.settings,
-				element: <h1>Réglages</h1>,
+				element: null,
 			},
 			{
 				path: PATH_NAMES.community,
-				element: <h1>Communauté</h1>,
+				element: null,
 			},
 			{
 				path: '*',
-				element: (
-					<div>
-						<h1>404</h1>
-					</div>
-				),
+				element: <ErrorBoundary />,
 			},
 		],
 	},

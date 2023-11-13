@@ -1,4 +1,4 @@
-export const USER_ACTIVITY = [
+export const USER_DAILY_ACTIVITY = [
 	{
 		userId: 12,
 		sessions: [

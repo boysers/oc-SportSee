@@ -7,9 +7,9 @@ type KeyInfo = {
 	lipidCount: string
 }
 
-export class UserModel {
-	static createUser(userData: TUser) {
-		return new UserModel(userData)
+export class UserInfoModel {
+	static createUserInfo(userInfoData: TUser) {
+		return new UserInfoModel(userInfoData)
 	}
 
 	private cachedAverageScore: number | undefined
@@ -39,10 +39,6 @@ export class UserModel {
 			this.cachedKeyInfo = keyInfos
 		}
 		return this.cachedKeyInfo
-	}
-
-	get userId() {
-		return this.userData.id
 	}
 
 	get averageScore() {

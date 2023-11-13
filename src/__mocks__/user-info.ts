@@ -1,4 +1,4 @@
-export const USER_MAIN_DATA = [
+export const USER_INFO = [
 	{
 		id: 12,
 		userInfos: {

@@ -1,4 +1,4 @@
-export { UserModel } from './User.model'
+export { UserInfoModel } from './UserInfo.model'
 
 export { UserActivityModel } from './UserActivity.model'
 

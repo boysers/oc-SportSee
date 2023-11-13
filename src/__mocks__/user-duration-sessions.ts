@@ -1,4 +1,4 @@
-export const USER_AVERAGE_SESSIONS = [
+export const USER_DURATION_SESSIONS = [
 	{
 		userId: 12,
 		sessions: [
