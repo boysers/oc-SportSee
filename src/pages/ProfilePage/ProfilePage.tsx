@@ -5,14 +5,15 @@ import {
 	ActivityTypeRadarChart,
 } from '@/components/chart'
 import { ProfileKeyInfoCardList, ProfileHeader } from './components'
-import { TProfileLoader } from './profileLoader'
-import { useLoaderData } from '@/utils/hooks'
+import { fetchProfile } from './profileLoader'
+import { useFetch } from '@/utils/hooks'
 
 export const ProfilePage: React.FC = () => {
-	const loaderData = useLoaderData<TProfileLoader>()
-	if (!loaderData) return null
+	const { data } = useFetch(fetchProfile)
 
-	const { userActivity, userInfo, userPerformance } = loaderData
+	if (!data) return null
+
+	const { userActivity, userInfo, userPerformance } = data
 
 	const { firstName, averageScore, keyInfo } = userInfo
 	const { durationSessions, sessions, caloriesDomain, kilogramDomain } = userActivity

@@ -8,13 +8,15 @@ import {
 
 export class UserService {
 	private api
+	private signal
 
-	constructor({ userId }: { userId: number }) {
+	constructor({ userId, signal }: { userId: number; signal?: AbortSignal | null }) {
 		this.api = `http://localhost:3000/user/${userId}/`
+		this.signal = signal
 	}
 
 	async getUserInfo(): Promise<TUser> {
-		const res = await fetch(this.api)
+		const res = await fetch(this.api, { signal: this.signal })
 
 		if (!res.ok) {
 			const errorMessage = await res.json()
