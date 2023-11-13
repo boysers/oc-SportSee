@@ -4,12 +4,15 @@ import {
 	DurationSessionsLineChart,
 	ActivityTypeRadarChart,
 } from '@/components/chart'
-import { useLoaderData } from 'react-router-dom'
 import { ProfileKeyInfoCardList, ProfileHeader } from './components'
 import { TProfileLoader } from './profileLoader'
+import { useLoaderData } from '@/utils/hooks'
 
 export const ProfilePage: React.FC = () => {
-	const { userActivity, userInfo, userPerformance } = useLoaderData() as TProfileLoader
+	const loaderData = useLoaderData<TProfileLoader>()
+	if (!loaderData) return null
+
+	const { userActivity, userInfo, userPerformance } = loaderData
 
 	const { firstName, averageScore, keyInfo } = userInfo
 	const { durationSessions, sessions, caloriesDomain, kilogramDomain } = userActivity

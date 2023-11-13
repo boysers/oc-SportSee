@@ -10,9 +10,9 @@ export const DOCUMENT_TITLES: Record<string, string> = {
 
 export const PATH_NAMES = {
 	home: '/',
-	profile: 'profile',
-	settings: 'settings',
-	community: 'community',
+	profile: '/profile',
+	settings: '/settings',
+	community: '/community',
 }
 
 export const DAY_LETTERS = ['D', 'L', 'M', 'M', 'J', 'V', 'S']
