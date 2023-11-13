@@ -16,7 +16,7 @@ export const ProfilePage: React.FC = () => {
 	const { userActivity, userInfo, userPerformance } = data
 
 	const { firstName, averageScore, keyInfo } = userInfo
-	const { durationSessions, sessions, caloriesDomain, kilogramDomain } = userActivity
+	const { sessions, caloriesDomain, kilogramDomain } = userActivity
 
 	return (
 		<div className="ProfilePage">
@@ -29,7 +29,7 @@ export const ProfilePage: React.FC = () => {
 						kilogramDomain={kilogramDomain}
 					/>
 					<div className="ProfilePage__container__charts__stats">
-						<DurationSessionsLineChart durationSessions={durationSessions} />
+						<DurationSessionsLineChart durationSessions={sessions} />
 						<ActivityTypeRadarChart activities={userPerformance.data} />
 						<AverageScoreRadialBarChart averageScore={averageScore} />
 					</div>

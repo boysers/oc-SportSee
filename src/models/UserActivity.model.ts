@@ -1,30 +1,27 @@
-import {
-	TUserActivity,
-	TUserActivitySessionItem,
-	TUserAverageSession as TUserAvgSessions,
-	TUserMergedActivity,
-} from '@/utils/types/User.type'
+import { TUserActivity, TUserAverageSession } from '@/utils/types/User.type'
 import { getDayOfWeekLetter, getMinMaxValues } from '@/utils/helpers'
 
-type NumberMin = number
-type NumberMax = number
+type UserActivityData = {
+	userId: number
+	sessions: Array<Omit<SessionItem, 'dayOfWeekLetter'>>
+}
 
-type MinMaxTuple = [NumberMin, NumberMax]
-type DomainTuple = [NumberMin, NumberMax]
-
-type TSession = TUserActivitySessionItem & { dayOfWeekLetter: TDayOfWeekLetter }
-
-type TDurationSessionItem = { dayOfWeekLetter: TDayOfWeekLetter; sessionLength: number }
-
-type TDayOfWeekLetter = string
+type SessionItem = {
+	date: string
+	day: number
+	sessionLength: number
+	kilogram: number
+	calories: number
+	dayOfWeekLetter: string
+}
 
 export class UserActivityModel {
 	static createUserActivity(
 		activity: TUserActivity,
-		userSessionsAvg: TUserAvgSessions
+		userSessions: TUserAverageSession
 	): UserActivityModel {
 		const { userId, sessions } = activity
-		const avgSessions = userSessionsAvg.sessions
+		const avgSessions = userSessions.sessions
 		const mergedSessions = sessions.map(({ day, ...session }, index) => ({
 			date: day,
 			...session,
@@ -33,18 +30,17 @@ export class UserActivityModel {
 		return new UserActivityModel({ userId, sessions: mergedSessions })
 	}
 
-	private cachedSessions: Array<TSession> | undefined
-	private cachedDurationSessions: Array<TDurationSessionItem> | undefined
+	private cachedSessions: Array<SessionItem> | undefined
 
-	private cachedKiloMinMax: MinMaxTuple | undefined
-	private cachedKiloDomain: DomainTuple | undefined
+	private cachedKiloMinMax: [number, number] | undefined
+	private cachedKiloDomain: [number, number] | undefined
 
-	private cachedCaloMinMax: MinMaxTuple | undefined
-	private cachedCaloDomain: DomainTuple | undefined
+	private cachedCaloMinMax: [number, number] | undefined
+	private cachedCaloDomain: [number, number] | undefined
 
-	private constructor(private readonly userActivityData: TUserMergedActivity) {}
+	private constructor(private readonly userActivityData: UserActivityData) {}
 
-	private calculateSessions(): Array<TSession> {
+	private formatSessions(): Array<SessionItem> {
 		if (!this.cachedSessions) {
 			this.cachedSessions = this.userActivityData.sessions.map(({ date, ...session }) => ({
 				...session,
@@ -55,18 +51,7 @@ export class UserActivityModel {
 		return this.cachedSessions
 	}
 
-	private calculateDurationSessions(): Array<TDurationSessionItem> {
-		if (!this.cachedDurationSessions) {
-			const sessions = this.calculateSessions()
-			this.cachedDurationSessions = sessions.map(({ dayOfWeekLetter, sessionLength }) => ({
-				dayOfWeekLetter,
-				sessionLength,
-			}))
-		}
-		return this.cachedDurationSessions
-	}
-
-	private calculateDomain(valueMin: number, valueMax: number, step: number): DomainTuple {
+	private calculateDomain(valueMin: number, valueMax: number, step: number): [number, number] {
 		const domainMin =
 			valueMin % step === 0 ? valueMin - step : Math.floor(valueMin / step) * step
 		const domainMax =
@@ -74,17 +59,17 @@ export class UserActivityModel {
 		return [domainMin, domainMax]
 	}
 
-	private calculateKiloMinMax(): MinMaxTuple {
+	private calculateKiloMinMax(): [number, number] {
 		if (!this.cachedKiloMinMax) {
-			const kilograms = this.calculateSessions().map(({ kilogram }) => kilogram)
+			const kilograms = this.formatSessions().map(({ kilogram }) => kilogram)
 			this.cachedKiloMinMax = getMinMaxValues(kilograms)
 		}
 		return this.cachedKiloMinMax
 	}
 
-	private calculateCaloMinMax(): MinMaxTuple {
+	private calculateCaloMinMax(): [number, number] {
 		if (!this.cachedCaloMinMax) {
-			const calories = this.calculateSessions().map(({ calories }) => calories)
+			const calories = this.formatSessions().map(({ calories }) => calories)
 			this.cachedCaloMinMax = getMinMaxValues(calories)
 		}
 		return this.cachedCaloMinMax
@@ -106,19 +91,15 @@ export class UserActivityModel {
 		return this.cachedCaloDomain
 	}
 
-	get sessions(): Array<TSession> {
-		return this.calculateSessions()
+	get sessions(): Array<SessionItem> {
+		return this.formatSessions()
 	}
 
-	get durationSessions(): Array<TDurationSessionItem> {
-		return this.calculateDurationSessions()
-	}
-
-	get kilogramDomain(): MinMaxTuple {
+	get kilogramDomain(): [number, number] {
 		return this.calculeKiloDomain()
 	}
 
-	get caloriesDomain(): DomainTuple {
+	get caloriesDomain(): [number, number] {
 		return this.calculeCaloDomain()
 	}
 }

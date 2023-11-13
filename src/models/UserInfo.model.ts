@@ -7,17 +7,20 @@ type KeyInfo = {
 	lipidCount: string
 }
 
+type AverageScore = number
+
 export class UserInfoModel {
 	static createUserInfo(userInfoData: TUser) {
 		return new UserInfoModel(userInfoData)
 	}
 
-	private cachedAverageScore: number | undefined
+	private cachedAverageScore: AverageScore | undefined
+
 	private cachedKeyInfo: KeyInfo | undefined
 
 	private constructor(private readonly userData: TUser) {}
 
-	private scoreFactory() {
+	private buildScoreAverageFactory(): AverageScore {
 		if (!this.cachedAverageScore) {
 			const baseScore =
 				('score' in this.userData ? this.userData.score : this.userData.todayScore) ?? 0
@@ -26,30 +29,30 @@ export class UserInfoModel {
 		return this.cachedAverageScore
 	}
 
-	private calculateKeyInfos(): KeyInfo {
+	private formatKeyInfo(): KeyInfo {
 		if (!this.cachedKeyInfo) {
 			const { calorieCount, proteinCount, carbohydrateCount, lipidCount } =
 				this.userData.keyData
-			const keyInfos: KeyInfo = {
+			const keyInfo: KeyInfo = {
 				calorieCount: `${calorieCount}kCal`,
 				proteinCount: `${proteinCount}kg`,
 				carbohydrateCount: `${carbohydrateCount}kg`,
 				lipidCount: `${lipidCount}kg`,
 			}
-			this.cachedKeyInfo = keyInfos
+			this.cachedKeyInfo = keyInfo
 		}
 		return this.cachedKeyInfo
 	}
 
-	get averageScore() {
-		return this.scoreFactory()
+	get averageScore(): AverageScore {
+		return this.buildScoreAverageFactory()
 	}
 
-	get firstName() {
+	get keyInfo(): KeyInfo {
+		return this.formatKeyInfo()
+	}
+
+	get firstName(): string {
 		return this.userData.userInfos.firstName
-	}
-
-	get keyInfo() {
-		return this.calculateKeyInfos()
 	}
 }
