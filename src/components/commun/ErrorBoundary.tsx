@@ -7,26 +7,27 @@ type ErrorBoundaryContainerProps = {
 }
 
 const ErrorBoundaryContainer: React.FC<ErrorBoundaryContainerProps> = ({ message, status }) => {
+	if (status === 404) {
+		message = "Oups, cette page n'existe pas."
+	}
 	return (
 		<div className="ErrorBoundary">
 			<div className="ErrorBoundary__container">
-				<h1>{status ?? 404}</h1>
-				<p>{message ?? "Oups, cette page n'existe pas."}</p>
+				<h1>{status}</h1>
+				<p>{message}</p>
 			</div>
 		</div>
 	)
 }
 
 export const ErrorBoundary = () => {
-	const error = useRouteError() as ResponseError | null
+	const error = useRouteError() as ResponseError | Error
 
-	if (!error) {
-		return <ErrorBoundaryContainer status={404} message="Oups, cette page n'existe pas." />
+	if (error instanceof ResponseError) {
+		return <ErrorBoundaryContainer status={error.status} message={error.message} />
 	}
 
-	if (error.message === 'Failed to fetch') {
-		return <ErrorBoundaryContainer status={500} message="It's terrible!" />
-	}
-
-	return <ErrorBoundaryContainer status={error.status} message={error.message} />
+	return (
+		<ErrorBoundaryContainer status={500} message="Oups, une erreur inconnue s'est produite." />
+	)
 }

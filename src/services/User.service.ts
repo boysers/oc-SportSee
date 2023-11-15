@@ -55,8 +55,6 @@ export class UserService {
 	async getProfile(): Promise<GetProfileResults> {
 		const user = await this.getUserInfo()
 
-		if (user instanceof Error) throw user
-
 		const [dailyActivity, durationSessions, performance] = await Promise.all([
 			this.getUserDailyActivity(),
 			this.getUserDurationSessions(),
