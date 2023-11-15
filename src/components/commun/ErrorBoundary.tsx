@@ -27,7 +27,14 @@ export const ErrorBoundary = () => {
 		return <ErrorBoundaryContainer status={error.status} message={error.message} />
 	}
 
-	return (
-		<ErrorBoundaryContainer status={500} message="Oups, une erreur inconnue s'est produite." />
-	)
+	if (error instanceof Error) {
+		return (
+			<ErrorBoundaryContainer
+				status={500}
+				message="Oups, une erreur inconnue s'est produite."
+			/>
+		)
+	}
+
+	return <ErrorBoundaryContainer status={404} message="Oups, cette page n'existe pas." />
 }

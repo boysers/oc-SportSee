@@ -13,10 +13,11 @@ export const RootLayout: React.FC = () => {
 	}, [location])
 
 	useEffect(() => {
-		if (location.pathname !== PATH_NAMES.profile) {
+		if (location.pathname === PATH_NAMES.home) {
 			navigate(PATH_NAMES.profile)
 		}
-	}, [navigate])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	return (
 		<>
