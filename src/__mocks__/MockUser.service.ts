@@ -1,11 +1,14 @@
-import { USER_ID_DEFAULT } from '@/utils/constants'
-import { USER_DAILY_ACTIVITY, USER_DURATION_SESSIONS, USER_INFO, USER_PERFORMANCE } from '.'
 import {
 	TUser,
 	TUserActivity,
 	TUserAverageSession,
 	TUserPerformance,
 } from '@/utils/types/User.type'
+import { MOCKED_USER_INFO } from './mocked-user-info'
+import { MOCKED_USER_DAILY_ACTIVITY } from './mocked-user-daily-activity'
+import { MOCKED_USER_DURATION_SESSIONS } from './mocked-user-duration-sessions'
+import { MOCKED_USER_PERFORMANCE } from './mocked-user-performance'
+import { USER_ID_DEFAULT } from '@/utils/constants'
 
 export class MockUserService {
 	private userId
@@ -15,30 +18,32 @@ export class MockUserService {
 	}
 
 	async getUserInfo(): Promise<TUser> {
-		const userIndex = USER_INFO.findIndex((data) => data.id === this.userId)
+		const userIndex = MOCKED_USER_INFO.findIndex((data) => data.id === this.userId)
 		if (userIndex === -1) throw new Error(`${this.userId} not found`)
-		return USER_INFO[userIndex]
+		return MOCKED_USER_INFO[userIndex]
 	}
 
 	async getUserDailyActivity(): Promise<TUserActivity> {
-		const userActivityIndex = USER_DAILY_ACTIVITY.findIndex(
+		const userActivityIndex = MOCKED_USER_DAILY_ACTIVITY.findIndex(
 			(data) => data.userId === this.userId
 		)
 		if (userActivityIndex === -1) throw new Error(`${this.userId} not found`)
-		return USER_DAILY_ACTIVITY[userActivityIndex]
+		return MOCKED_USER_DAILY_ACTIVITY[userActivityIndex]
 	}
 
 	async getUserDurationSessions(): Promise<TUserAverageSession> {
-		const userAvgSessionsIndex = USER_DURATION_SESSIONS.findIndex(
+		const userAvgSessionsIndex = MOCKED_USER_DURATION_SESSIONS.findIndex(
 			(data) => data.userId === this.userId
 		)
 		if (userAvgSessionsIndex === -1) throw new Error(`${this.userId} not found`)
-		return USER_DURATION_SESSIONS[userAvgSessionsIndex]
+		return MOCKED_USER_DURATION_SESSIONS[userAvgSessionsIndex]
 	}
 
 	async getUserPerformance(): Promise<TUserPerformance> {
-		const userPerfIndex = USER_PERFORMANCE.findIndex((data) => data.userId === this.userId)
+		const userPerfIndex = MOCKED_USER_PERFORMANCE.findIndex(
+			(data) => data.userId === this.userId
+		)
 		if (userPerfIndex === -1) throw new Error(`${this.userId} not found`)
-		return USER_PERFORMANCE[userPerfIndex]
+		return MOCKED_USER_PERFORMANCE[userPerfIndex]
 	}
 }

@@ -1,28 +1,24 @@
 import { UserActivityModel, UserInfoModel, UserPerformanceModel } from '@/models'
 import { UserService } from '@/services'
 import { USER_ID_DEFAULT } from '@/utils/constants'
-import { LoaderFunction } from 'react-router-dom'
 
-type ProfileLoaderResults = {
+type ProfileFetchResults = {
 	userInfo: UserInfoModel
 	userActivity: UserActivityModel
 	userPerformance: UserPerformanceModel
 }
 
-export const profileLoader: LoaderFunction<ProfileLoaderResults> = async (props) => {
-	const params = new URL(props.request.url).searchParams
-
-	props.request.signal
-
-	const id = params.get('id')
-
+export const profileFetch: (signal?: AbortSignal | null) => Promise<ProfileFetchResults> = async (
+	signal
+) => {
+	const id = new URL(document.location.href).searchParams.get('id')
 	const userId = !id ? USER_ID_DEFAULT : Number(id)
 
 	if (isNaN(userId)) {
 		throw new Error('id is not a number')
 	}
 
-	const userService = new UserService({ userId, signal: props.request.signal })
+	const userService = new UserService({ userId, signal })
 
 	return await userService.getProfile()
 }

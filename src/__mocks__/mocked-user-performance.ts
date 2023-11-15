@@ -1,4 +1,4 @@
-export const USER_PERFORMANCE = [
+export const MOCKED_USER_PERFORMANCE = [
 	{
 		userId: 12,
 		kind: {

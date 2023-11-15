@@ -1,3 +1,4 @@
+import { UserActivityModel, UserInfoModel, UserPerformanceModel } from '@/models'
 import { ResponseError } from '@/utils/helpers'
 import {
 	TUser,
@@ -5,6 +6,12 @@ import {
 	TUserAverageSession,
 	TUserPerformance,
 } from '@/utils/types/User.type'
+
+export type GetProfileResults = {
+	userInfo: UserInfoModel
+	userActivity: UserActivityModel
+	userPerformance: UserPerformanceModel
+}
 
 export class UserService {
 	private api
@@ -15,7 +22,7 @@ export class UserService {
 		this.signal = signal
 	}
 
-	async getUserInfo(): Promise<TUser> {
+	private async getUserInfo(): Promise<TUser> {
 		const res = await fetch(this.api, { signal: this.signal })
 
 		if (!res.ok) {
@@ -27,21 +34,41 @@ export class UserService {
 		return data
 	}
 
-	async getUserDailyActivity(): Promise<TUserActivity> {
+	private async getUserDailyActivity(): Promise<TUserActivity> {
 		const res = await fetch(this.api + 'activity')
 		const { data } = await res.json()
 		return data
 	}
 
-	async getUserDurationSessions(): Promise<TUserAverageSession> {
+	private async getUserDurationSessions(): Promise<TUserAverageSession> {
 		const res = await fetch(this.api + 'average-sessions')
 		const { data } = await res.json()
 		return data
 	}
 
-	async getUserPerformance(): Promise<TUserPerformance> {
+	private async getUserPerformance(): Promise<TUserPerformance> {
 		const res = await fetch(this.api + 'performance')
 		const { data } = await res.json()
 		return data
+	}
+
+	async getProfile(): Promise<GetProfileResults> {
+		const user = await this.getUserInfo()
+
+		if (user instanceof Error) throw user
+
+		const [dailyActivity, durationSessions, performance] = await Promise.all([
+			this.getUserDailyActivity(),
+			this.getUserDurationSessions(),
+			this.getUserPerformance(),
+		])
+
+		const userInfo = UserInfoModel.createUserInfo(user)
+
+		const userActivity = UserActivityModel.createUserActivity(dailyActivity, durationSessions)
+
+		const userPerformance = UserPerformanceModel.createUserPerformance(performance)
+
+		return { userInfo, userActivity, userPerformance }
 	}
 }

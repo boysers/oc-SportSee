@@ -1,4 +1,4 @@
-export const USER_INFO = [
+export const MOCKED_USER_INFO = [
 	{
 		id: 12,
 		userInfos: {

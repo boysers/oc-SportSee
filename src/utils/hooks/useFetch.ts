@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { ResponseError } from '../helpers'
 
 interface FetchHookResult<D> {
 	data: D | null
@@ -20,24 +21,24 @@ export function useFetch<D = unknown>(
 			try {
 				setData(null)
 				setLoading(true)
+				setError(null)
 				const result = await apiFunc(abortController.signal)
-				if (!ignore) {
-					setData(result)
-				}
+				setData(result)
 			} catch (error) {
-				if (error instanceof Error) {
+				if (error instanceof ResponseError) {
 					setError(error)
+					return
 				}
+				if (error instanceof DOMException) return
+				setError(new Error("Oups, une erreur inconnue s'est produite."))
 			} finally {
 				setLoading(false)
 			}
 		}
 
-		let ignore = false
 		startFetching()
 
 		return () => {
-			ignore = true
 			abortController.abort()
 		}
 	}, [apiFunc])

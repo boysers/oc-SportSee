@@ -4,12 +4,14 @@ import {
 	DurationSessionsLineChart,
 	ActivityTypeRadarChart,
 } from '@/components/chart'
-import { ProfileKeyInfoCardList, ProfileHeader } from './components'
-import { fetchProfile } from './profileLoader'
 import { useFetch } from '@/utils/hooks'
+import { ProfileHeader, ProfileKeyInfoCardList } from '@/components/profile'
+import { profileFetch } from './profileFetch'
 
 export const ProfilePage: React.FC = () => {
-	const { data } = useFetch(fetchProfile)
+	const { data, error } = useFetch(profileFetch)
+
+	if (error) throw error
 
 	if (!data) return null
 

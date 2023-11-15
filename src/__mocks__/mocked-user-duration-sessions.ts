@@ -1,4 +1,4 @@
-export const USER_DURATION_SESSIONS = [
+export const MOCKED_USER_DURATION_SESSIONS = [
 	{
 		userId: 12,
 		sessions: [

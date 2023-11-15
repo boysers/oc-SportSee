@@ -1,4 +1,4 @@
-export const USER_DAILY_ACTIVITY = [
+export const MOCKED_USER_DAILY_ACTIVITY = [
 	{
 		userId: 12,
 		sessions: [
