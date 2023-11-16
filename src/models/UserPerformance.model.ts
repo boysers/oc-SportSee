@@ -1,5 +1,6 @@
-import { TUserPerformance } from '@/utils/types/User.type'
 import { translateKind } from '@/utils/helpers'
+import { TrainingType } from '@/utils/types/TrainingType'
+import { TUserPerformance } from '@/utils/types/User.type'
 
 type PerformanceData = Array<{ name: string; value: number }>
 
@@ -16,7 +17,7 @@ export class UserPerformanceModel {
 		if (!this.cachedPerformanceData) {
 			const { data, kind: kindList } = this.userPerformanceData
 			this.cachedPerformanceData = data.map(({ kind, value }) => ({
-				name: translateKind(kindList[kind]),
+				name: translateKind(kindList[kind] as TrainingType),
 				value,
 			}))
 		}

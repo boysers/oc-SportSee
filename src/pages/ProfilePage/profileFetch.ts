@@ -12,6 +12,7 @@ export const profileFetch: (signal?: AbortSignal | null) => Promise<ProfileFetch
 	signal
 ) => {
 	const id = new URL(document.location.href).searchParams.get('id')
+
 	const userId = !id ? USER_ID_DEFAULT : Number(id)
 
 	if (isNaN(userId)) {

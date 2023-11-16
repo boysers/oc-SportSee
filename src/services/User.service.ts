@@ -18,7 +18,7 @@ export class UserService {
 	private signal
 
 	constructor({ userId, signal }: { userId: number; signal?: AbortSignal | null }) {
-		this.api = `http://localhost:3000/user/${userId}/`
+		this.api = `http://localhost:3000/user/${userId}`
 		this.signal = signal
 	}
 
@@ -35,19 +35,19 @@ export class UserService {
 	}
 
 	private async getUserDailyActivity(): Promise<TUserActivity> {
-		const res = await fetch(this.api + 'activity')
+		const res = await fetch(`${this.api}/activity`)
 		const { data } = await res.json()
 		return data
 	}
 
 	private async getUserDurationSessions(): Promise<TUserAverageSession> {
-		const res = await fetch(this.api + 'average-sessions')
+		const res = await fetch(`${this.api}/average-sessions`)
 		const { data } = await res.json()
 		return data
 	}
 
 	private async getUserPerformance(): Promise<TUserPerformance> {
-		const res = await fetch(this.api + 'performance')
+		const res = await fetch(`${this.api}/performance`)
 		const { data } = await res.json()
 		return data
 	}

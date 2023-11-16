@@ -16,7 +16,7 @@ export const RootLayout: React.FC = () => {
 		if (location.pathname === PATH_NAMES.home) {
 			navigate(PATH_NAMES.profile)
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	return (
