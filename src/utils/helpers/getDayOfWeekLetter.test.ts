@@ -1,6 +1,5 @@
-import { expect, test } from 'vitest'
+import { expect, test, describe } from 'vitest'
 import { getDayOfWeekLetter } from './getDayOfWeekLetter'
-import { describe } from 'node:test'
 
 describe('Testing getDayOfWeekLetter function', () => {
 	test('returns "L" for Lundi', () => {
