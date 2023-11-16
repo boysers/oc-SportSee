@@ -1,3 +1,5 @@
+import { TrainingType } from '../types/TrainingType'
+
 export const USER_ID_DEFAULT: 12 | 18 = 12
 
 export const BASE_DOCUMENT_TITLE = 'SportSee'
@@ -17,7 +19,7 @@ export const PATH_NAMES = {
 
 export const DAY_LETTERS = ['D', 'L', 'M', 'M', 'J', 'V', 'S']
 
-export const TRANSLATED_KINDS_FR: Record<string, string> = {
+export const TRANSLATED_KINDS_FR: Record<TrainingType, string> = {
 	cardio: 'Cardio',
 	energy: 'Energie',
 	endurance: 'Endurance',
