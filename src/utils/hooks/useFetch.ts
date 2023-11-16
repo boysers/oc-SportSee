@@ -8,7 +8,7 @@ interface FetchHookResult<D> {
 }
 
 export function useFetch<D = unknown>(
-	apiFunc: (signal?: AbortSignal) => Promise<D>
+	asyncfunc: (signal?: AbortSignal) => Promise<D>
 ): FetchHookResult<D> {
 	const [data, setData] = useState<D | null>(null)
 	const [loading, setLoading] = useState<boolean>(true)
@@ -22,7 +22,7 @@ export function useFetch<D = unknown>(
 				setData(null)
 				setLoading(true)
 				setError(null)
-				const result = await apiFunc(abortController.signal)
+				const result = await asyncfunc(abortController.signal)
 				setData(result)
 			} catch (error) {
 				if (error instanceof ResponseError) {
@@ -41,7 +41,7 @@ export function useFetch<D = unknown>(
 		return () => {
 			abortController.abort()
 		}
-	}, [apiFunc])
+	}, [asyncfunc])
 
 	return { data, loading, error }
 }
