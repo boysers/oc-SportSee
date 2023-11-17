@@ -1,7 +1,7 @@
 import { RouteObject } from 'react-router-dom'
 import { ProfileLayout, RootLayout } from './components/layout'
 import { PATH_NAMES } from './utils/constants'
-import { ProfilePage } from './pages/ProfilePage'
+import { ProfilePage, profileLoader } from './pages/ProfilePage'
 import { ErrorBoundary } from './components/commun'
 
 export const routes: Array<RouteObject> = [
@@ -21,6 +21,7 @@ export const routes: Array<RouteObject> = [
 					{
 						index: true,
 						element: <ProfilePage />,
+						loader: profileLoader,
 					},
 				],
 			},

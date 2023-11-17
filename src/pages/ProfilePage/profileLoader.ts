@@ -1,9 +1,9 @@
 import { UserActivityModel, UserInfoModel, UserPerformanceModel } from '@/models'
 import { UserService } from '@/services'
 import { USER_ID_DEFAULT } from '@/utils/constants'
-import { LoaderFunction } from 'react-router-dom'
+import { LoaderFunction, json } from 'react-router-dom'
 
-type ProfileLoaderResults = {
+export type ProfileLoaderResults = {
 	userInfo: UserInfoModel
 	userActivity: UserActivityModel
 	userPerformance: UserPerformanceModel
@@ -14,12 +14,12 @@ export const profileLoader: LoaderFunction<ProfileLoaderResults> = async (props)
 
 	props.request.signal
 
-	const id = params.get('id')
+	const idParam = params.get('id')
 
-	const userId = !id ? USER_ID_DEFAULT : Number(id)
+	const userId = !idParam ? USER_ID_DEFAULT : Number(idParam)
 
 	if (isNaN(userId)) {
-		throw new Error('id is not a number')
+		throw json({ message: 'id is not a number' }, { status: 400 })
 	}
 
 	const userService = new UserService({ userId, signal: props.request.signal })

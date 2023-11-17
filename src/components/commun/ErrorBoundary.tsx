@@ -7,9 +7,6 @@ type ErrorBoundaryContainerProps = {
 }
 
 const ErrorBoundaryContainer: React.FC<ErrorBoundaryContainerProps> = ({ message, status }) => {
-	if (status === 404) {
-		message = "Oups, cette page n'existe pas."
-	}
 	return (
 		<div className="ErrorBoundary">
 			<div className="ErrorBoundary__container">
@@ -21,7 +18,11 @@ const ErrorBoundaryContainer: React.FC<ErrorBoundaryContainerProps> = ({ message
 }
 
 export const ErrorBoundary = () => {
-	const error = useRouteError() as ResponseError | Error
+	const error = useRouteError() as { data: { message: string }; status: number } | null
+
+	if (error?.data?.message && !isNaN(error.status)) {
+		return <ErrorBoundaryContainer status={error.status} message={error.data.message} />
+	}
 
 	if (error instanceof ResponseError) {
 		return <ErrorBoundaryContainer status={error.status} message={error.message} />

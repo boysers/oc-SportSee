@@ -4,21 +4,20 @@ import {
 	DurationSessionsLineChart,
 	ActivityTypeRadarChart,
 } from '@/components/chart'
-import { useFetch } from '@/utils/hooks'
+import { useLoaderData } from '@/utils/hooks'
 import { ProfileHeader, ProfileKeyInfoCardList } from '@/components/profile'
-import { profileFetch } from './profileFetch'
+import { ProfileLoaderResults } from './profileLoader'
 
 export const ProfilePage: React.FC = () => {
-	const { data, error } = useFetch(profileFetch)
+	const loaderData = useLoaderData<ProfileLoaderResults>()
 
-	if (error) throw error
+	if (!loaderData) return null
 
-	if (!data) return null
-
-	const { userActivity, userInfo, userPerformance } = data
+	const { userInfo, userActivity, userPerformance } = loaderData
 
 	const { firstName, averageScore, keyInfo } = userInfo
 	const { sessions, caloriesDomain, kilogramDomain } = userActivity
+	const performanceData = userPerformance.data
 
 	return (
 		<div className="ProfilePage">
@@ -32,7 +31,7 @@ export const ProfilePage: React.FC = () => {
 					/>
 					<div className="ProfilePage__container__charts__stats">
 						<DurationSessionsLineChart durationSessions={sessions} />
-						<ActivityTypeRadarChart activities={userPerformance.data} />
+						<ActivityTypeRadarChart activities={performanceData} />
 						<AverageScoreRadialBarChart averageScore={averageScore} />
 					</div>
 				</div>
